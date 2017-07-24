@@ -1,0 +1,8 @@
+version: "2"
+services:
+  test:
+    image: python:3-alpine
+    volumes:
+      - .:/sandbox
+    working_dir: /sandbox
+    command: python -m unittest tests.test_sample
