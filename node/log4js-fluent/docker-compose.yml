@@ -1,0 +1,8 @@
+version: "2"
+services:
+  fluent:
+    image: fluent/fluentd
+    volumes:
+      - ./fluentd/fluent.conf:/fluentd/etc/fluent.conf
+    ports:
+      - 24224:24224
