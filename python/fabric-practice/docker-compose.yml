@@ -1,0 +1,7 @@
+version: "2"
+services:
+  fabric:
+    build: ./docker
+    image: fabric
+    volumes:
+      - .:/tmp/src

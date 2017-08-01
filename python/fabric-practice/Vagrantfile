@@ -1,0 +1,15 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.define "app1" do |app1|
+    app1.vm.box = "mvbcoding/awslinux"
+    app1.vm.network "private_network", ip: "192.168.1.10"
+  end
+  config.vm.define "app2" do |app2|
+    app2.vm.box = "mvbcoding/awslinux"
+    app2.vm.network "private_network", ip: "192.168.1.20"
+  end
+end
