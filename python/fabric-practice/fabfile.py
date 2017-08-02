@@ -1,4 +1,7 @@
 from fabric.api import sudo, cd, env, local
+from cuisine import package_ensure, select_package
+
+select_package("yum")
 
 def app1():
   env.hosts = ["192.168.1.10"]
@@ -11,5 +14,5 @@ def app2():
   env.key_filename = "./.vagrant/machines/app2/virtualbox/private_key"
 
 def deploy():
-  sudo("yum -y install git")
+  package_ensure("git")
   sudo("git clone https://github.com/70-10/node-boilerplate /tmp/node-boilerplate")
