@@ -1,0 +1,7 @@
+version: "2"
+services:
+  rust:
+    build: .
+    image: rust:alpine
+    volumes:
+      - .:/rust
