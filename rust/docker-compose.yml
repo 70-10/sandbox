@@ -1,11 +1,11 @@
 version: "2"
 services:
-  run:
-    build: ../
+  cargo:
+    build: .
     image: rust:alpine
     volumes:
       - .:/rust
     working_dir: /rust
     environment:
       USER: ${USER}
-    command: cargo run
+    entrypoint: cargo
