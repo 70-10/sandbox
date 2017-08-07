@@ -9,3 +9,13 @@ services:
     environment:
       USER: ${USER}
     command: cargo run
+
+  release-build:
+    build: ../
+    image: rust:alpine
+    volumes:
+      - .:/rust
+    working_dir: /rust
+    environment:
+      USER: ${USER}
+    command: cargo build --release
