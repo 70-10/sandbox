@@ -30,6 +30,11 @@ def OR(x1, x2):
     else:
         return 1
 
+def XOR(x1, x2):
+    s1 = NAND(x1, x2)
+    s2 = OR(x1, x2)
+    return AND(s1, s2)
+
 print("AND(0, 0)  = %d" % AND(0, 0))
 print("AND(1, 0)  = %d" % AND(1, 0))
 print("AND(0, 1)  = %d" % AND(0, 1))
@@ -44,3 +49,8 @@ print("OR(0, 0)   = %d" % OR(0, 0))
 print("OR(1, 0)   = %d" % OR(1, 0))
 print("OR(0, 1)   = %d" % OR(0, 1))
 print("OR(1, 1)   = %d" % OR(1, 1))
+
+print("XOR(0, 0)  = %d" % XOR(0, 0))
+print("XOR(1, 0)  = %d" % XOR(1, 0))
+print("XOR(0, 1)  = %d" % XOR(0, 1))
+print("XOR(1, 1)  = %d" % XOR(1, 1))
