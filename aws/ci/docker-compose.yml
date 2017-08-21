@@ -1,0 +1,11 @@
+version: "2"
+services:
+  ci:
+    build: ./docker
+    image: cloudformation-z
+    volumes:
+      - ~/.aws:/root/.aws
+      - .:/tmp/src
+    environment:
+      - AWS_PROFILE=${AWS_PROFILE}
+      - NODE_ENV=DEV
