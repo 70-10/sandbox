@@ -10,6 +10,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.92.0"
+    "aws-sdk": "^2.92.0",
+    "debug": "^3.0.0",
+    "p-queue": "^1.1.0"
   }
 }

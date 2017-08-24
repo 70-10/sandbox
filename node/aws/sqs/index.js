@@ -1,3 +1,6 @@
+const SQSReceiver = require("./sqs-receiver");
+const PQueue = require("p-queue");
+
 const AWS = require("aws-sdk");
 AWS.config.update({
   region: "ap-northeast-1"
@@ -12,39 +15,27 @@ const SQS = new AWS.SQS({
 });
 
 async function main() {
+  const queue = new PQueue({ concurrency: 5 });
+  const receiver = new SQSReceiver(SQS);
+  receiver.on("receive", msg => {
+    console.log(`Receive: ${msg.Body}`);
+
+    const worker = async () => {
+      const time = Math.floor(Math.random() * 6) * 1000;
+      await sleep(time);
+      console.log(`${msg.Body}: ${time}, queue.size = ${queue.size}`);
+      return Promise.resolve();
+    };
+
+    queue.add(worker).catch(console.error);
+  });
+  await receiver.start(QUEUE_NAME);
+
   const { QueueUrl } = await createQueue(SQS, QUEUE_NAME);
   sendMessages(SQS, QueueUrl).catch(console.error);
-  receiveAndDelete(SQS, QueueUrl, 3).catch(console.error);
 }
 
 main().catch(console.error);
-
-async function receiveAndDelete(sqs, queueUrl, receiveCount) {
-  const { Messages } = await sqs
-    .receiveMessage({
-      QueueUrl: queueUrl,
-      MaxNumberOfMessages: receiveCount
-    })
-    .promise();
-  if (Messages) {
-    Messages.forEach(async msg => {
-      console.log(msg.Body);
-      await sqs
-        .deleteMessage({
-          QueueUrl: queueUrl,
-          ReceiptHandle: msg.ReceiptHandle
-        })
-        .promise();
-    });
-  } else {
-    console.log("Message is nothing.");
-  }
-  await sleep(2000);
-
-  setImmediate(async () => {
-    await receiveAndDelete(sqs, queueUrl, receiveCount);
-  });
-}
 
 async function sendMessages(sqs, queueUrl) {
   let i = 0;
