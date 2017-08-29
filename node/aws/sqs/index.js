@@ -44,21 +44,6 @@ async function main() {
 
 main().catch(console.error);
 
-async function sendMessages(sqs, queueUrl) {
-  let i = 0;
-  while (true) {
-    debug(`Send Message: ${i}`);
-    await sqs
-      .sendMessage({
-        QueueUrl: queueUrl,
-        MessageBody: `Message: ${i}`
-      })
-      .promise();
-    await sleep(500);
-    i++;
-  }
-}
-
 async function createQueue(sqs, queueName) {
   return await sqs.createQueue({ QueueName: queueName }).promise();
 }
