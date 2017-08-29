@@ -12,9 +12,7 @@ class SQSReceiver extends EventEmitter {
   async start(queueName) {
     if (!this.queueUrl) {
       const { QueueUrl } = await this.sqs
-        .getQueueUrl({
-          QueueName: queueName
-        })
+        .getQueueUrl({ QueueName: queueName })
         .promise();
       this.queueUrl = QueueUrl;
     }

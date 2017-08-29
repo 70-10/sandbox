@@ -1,5 +1,8 @@
 const SQSReceiver = require("./sqs-receiver");
+const SQSSender = require("./sqs-sender");
 const PQueue = require("p-queue");
+
+const debug = require("debug")("sqs:index");
 
 const AWS = require("aws-sdk");
 AWS.config.update({
@@ -17,22 +20,26 @@ const SQS = new AWS.SQS({
 async function main() {
   const queue = new PQueue({ concurrency: 5 });
   const receiver = new SQSReceiver(SQS);
+  const sender = new SQSSender(SQS, 10);
+
+  sender.on("send", msg => debug(`Send Message: ${msg}`));
+
   receiver.on("receive", msg => {
-    console.log(`Receive: ${msg.Body}`);
+    debug(`Receive: ${msg.Body}`);
 
     const worker = async () => {
       const time = Math.floor(Math.random() * 6) * 1000;
       await sleep(time);
-      console.log(`${msg.Body}: ${time}, queue.size = ${queue.size}`);
+      debug(`${msg.Body}: ${time}, queue.size = ${queue.size}`);
       return Promise.resolve();
     };
 
     queue.add(worker).catch(console.error);
   });
-  await receiver.start(QUEUE_NAME);
 
   const { QueueUrl } = await createQueue(SQS, QUEUE_NAME);
-  sendMessages(SQS, QueueUrl).catch(console.error);
+  await sender.start(QUEUE_NAME);
+  await receiver.start(QUEUE_NAME);
 }
 
 main().catch(console.error);
@@ -40,7 +47,7 @@ main().catch(console.error);
 async function sendMessages(sqs, queueUrl) {
   let i = 0;
   while (true) {
-    console.log(`Send Message: ${i}`);
+    debug(`Send Message: ${i}`);
     await sqs
       .sendMessage({
         QueueUrl: queueUrl,
