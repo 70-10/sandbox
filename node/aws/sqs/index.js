@@ -25,16 +25,10 @@ async function main() {
   sender.on("send", msg => debug(`Send Message: ${msg}`));
 
   receiver.on("receive", msg => {
-    debug(`Receive: ${msg.Body}`);
-
-    const worker = async () => {
-      const time = Math.floor(Math.random() * 6) * 1000;
-      await sleep(time);
-      debug(`${msg.Body}: ${time}, queue.size = ${queue.size}`);
-      return Promise.resolve();
-    };
-
-    queue.add(worker).catch(console.error);
+    queue
+      .add(worker(msg))
+      .then(body => console.log(`Message: ${body}, queue size = ${queue.size}`))
+      .catch(console.error);
   });
 
   const { QueueUrl } = await createQueue(SQS, QUEUE_NAME);
@@ -43,6 +37,14 @@ async function main() {
 }
 
 main().catch(console.error);
+
+function worker(msg) {
+  const time = Math.floor(Math.random() * 6) * 1000;
+  return async () => {
+    await sleep(time);
+    return msg.Body;
+  };
+}
 
 async function createQueue(sqs, queueName) {
   return await sqs.createQueue({ QueueName: queueName }).promise();

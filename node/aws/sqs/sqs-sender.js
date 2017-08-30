@@ -23,8 +23,8 @@ class SQSSender extends EventEmitter {
     await this.sendMessage();
   }
 
-  async sendMessage() {
-    const worker = async () => {
+  worker() {
+    return async () => {
       const i = Math.floor(Math.random() * 5) + 1;
       debug("sendMessage: " + i);
       await this.sqs
@@ -37,7 +37,10 @@ class SQSSender extends EventEmitter {
       this.emit("send", i);
       await sleep(i * 1000);
     };
-    this.queue.add(worker).catch(console.error);
+  }
+
+  async sendMessage() {
+    this.queue.add(this.worker()).catch(console.error);
 
     setImmediate(async () => await this.sendMessage());
   }
