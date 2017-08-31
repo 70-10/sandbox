@@ -1,0 +1,27 @@
+version: "3.3"
+services:
+  ansible:
+    build: ./docker/ansible
+    image: ansible-practice
+    volumes:
+      - .:/ansible
+    environment:
+      - ANSIBLE_HOST_KEY_CHECKING=False
+    entrypoint: ansible
+    links:
+      - build-server:build-server.local
+
+  ansible-playbook:
+    build: ./docker
+    image: ansible-practice
+    volumes:
+      - .:/ansible
+    environment:
+      - ANSIBLE_HOST_KEY_CHECKING=False
+    entrypoint: ansible-playbook
+    links:
+      - build-server:build-server.local
+
+  build-server:
+    build: ./docker/ec2
+    image: amazonlinux_ec2-user
