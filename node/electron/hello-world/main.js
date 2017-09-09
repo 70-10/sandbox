@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
 const url = require("url");
 
@@ -34,4 +34,9 @@ app.on("activate", () => {
   if (win === null) {
     createWindow();
   }
+});
+
+ipcMain.on("message", (event, arg) => {
+  console.log(arg);
+  event.sender.send("reply", "pong");
 });
