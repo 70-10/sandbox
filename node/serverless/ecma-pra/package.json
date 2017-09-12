@@ -4,7 +4,9 @@
   "description": "ECMAScript Practice",
   "scripts": {
     "dev": "sls offline start",
-    "deploy": "sls deploy -v"
+    "deploy": "sls deploy -v",
+    "remove": "sls remove -v",
+    "webpack": "sls webpack"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
