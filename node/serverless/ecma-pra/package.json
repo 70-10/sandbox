@@ -3,21 +3,28 @@
   "version": "1.0.0",
   "description": "ECMAScript Practice",
   "scripts": {
-    "dev": "sls offline start",
+    "dev": "run-s dynamo:init offline",
     "deploy": "sls deploy -v",
     "remove": "sls remove -v",
+    "offline": "NODE_ENV=LOCALDEV sls offline start",
+    "dynamo:init": "sls dynamodb install",
+    "dynamo:gui": "DYNAMO_ENDPOINT=http://localhost:8000 dynamodb-admin",
     "webpack": "sls webpack"
   },
   "devDependencies": {
+    "aws-sdk": "^2.115.0",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
-    "serverless": "^1.21.1",
+    "dynamodb-admin": "^1.14.0",
+    "npm-run-all": "^4.1.1",
+    "serverless": "^1.22.0",
+    "serverless-dynamodb-local": "^0.2.25",
     "serverless-offline": "^3.15.3",
-    "serverless-webpack": "^2.2.0",
-    "webpack": "^3.3.0"
+    "serverless-webpack": "^3.0.0",
+    "webpack": "^3.5.6"
   },
   "author": "",
   "license": "MIT"
