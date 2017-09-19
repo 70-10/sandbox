@@ -44,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
-        <!--View Controller-->
+        <!--Second View Controller-->
         <scene sceneID="g0y-Ih-Ilf">
             <objects>
-                <viewController id="xdO-oX-5FC" sceneMemberID="viewController">
+                <viewController id="xdO-oX-5FC" customClass="SecondViewController" customModule="SwiftButton" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1ei-gw-X0j"/>
                         <viewControllerLayoutGuide type="bottom" id="0i3-SH-Ao3"/>
@@ -60,6 +60,9 @@
                                 <rect key="frame" x="123" y="269" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="key.png"/>
+                                <connections>
+                                    <action selector="changeButton:" destination="xdO-oX-5FC" eventType="touchUpInside" id="Hg2-GQ-tda"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccs-aa-7l5">
                                 <rect key="frame" x="0.0" y="68" width="375" height="55"/>
@@ -71,6 +74,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20000001789999999" green="0.70588237050000002" blue="0.5647059083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="ccs-aa-7l5" id="lpS-SE-URY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R1Z-AA-sUB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

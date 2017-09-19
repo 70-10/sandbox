@@ -14,6 +14,7 @@
 		30D3051E1F70150A001B1D8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D3051C1F70150A001B1D8C /* LaunchScreen.storyboard */; };
 		30D305271F701BB5001B1D8C /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D305251F701BB5001B1D8C /* key.png */; };
 		30D305281F701BB5001B1D8C /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 30D305261F701BB5001B1D8C /* setting.png */; };
+		30F25CF51F7148A500FA58AC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F25CF41F7148A500FA58AC /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		30D3051F1F70150A001B1D8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30D305251F701BB5001B1D8C /* key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key.png; sourceTree = "<group>"; };
 		30D305261F701BB5001B1D8C /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		30F25CF41F7148A500FA58AC /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				30D305261F701BB5001B1D8C /* setting.png */,
 				30D305131F70150A001B1D8C /* AppDelegate.swift */,
 				30D305151F70150A001B1D8C /* ViewController.swift */,
+				30F25CF41F7148A500FA58AC /* SecondViewController.swift */,
 				30D305171F70150A001B1D8C /* Main.storyboard */,
 				30D3051A1F70150A001B1D8C /* Assets.xcassets */,
 				30D3051C1F70150A001B1D8C /* LaunchScreen.storyboard */,
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F25CF51F7148A500FA58AC /* SecondViewController.swift in Sources */,
 				30D305161F70150A001B1D8C /* ViewController.swift in Sources */,
 				30D305141F70150A001B1D8C /* AppDelegate.swift in Sources */,
 			);
@@ -305,6 +309,7 @@
 				30D305241F70150A001B1D8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
