@@ -10,6 +10,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "p-queue": "^1.1.0"
+    "p-queue": "^2.2.0"
   }
 }

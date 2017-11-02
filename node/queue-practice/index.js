@@ -6,13 +6,18 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function worker(num) {
+  return async () => {
+    await sleep(1000);
+    return num;
+  };
+}
+
 async function main() {
   for (var i = 0; i < 10; i++) {
     const num = i;
-    queue.add(() => sleep(1000)).then(() => console.log(num));
+    queue.add(worker(num)).then(console.log);
   }
-  console.log(queue.size);
-  console.log("test");
 }
 
 main().catch(console.error);
