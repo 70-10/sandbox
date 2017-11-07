@@ -66,6 +66,11 @@ async function metricStatics(serviceName, startTime, endTime) {
 }
 
 function output(serviceBillings) {
+  if (serviceBillings.length <= 0) {
+    console.log("total: $0");
+    return;
+  }
+
   const totalBilling = serviceBillings
     .map(a => a.billing)
     .reduce((prev, current) => prev + current);
