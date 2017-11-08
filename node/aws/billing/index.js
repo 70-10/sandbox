@@ -11,17 +11,9 @@ const CloudWatch = new AWS.CloudWatch({
 async function main() {
   const serviceNames = await getServiceNames();
   const yesterday = moment().subtract(1, "days");
-  const startTime = yesterday.startOf("day").toDate();
-  const endTime = yesterday.endOf("day").toDate();
+  const billings = await getServiceBillings(serviceNames, yesterday);
 
-  const serviceBillings = await Promise.all(
-    serviceNames.map(async serviceName => {
-      const billing = await metricStatics(serviceName, startTime, endTime);
-      return { service_name: serviceName, billing };
-    })
-  );
-
-  output(serviceBillings);
+  output(billings);
 }
 
 function flatten(ary) {
@@ -44,6 +36,41 @@ async function getServiceNames() {
   return flatten(Metrics.map(m => m.Dimensions))
     .filter(m => m.Name === "ServiceName")
     .map(m => m.Value);
+}
+
+async function getServiceBillings(serviceNames, day) {
+  const startTime = day.startOf("day").toDate();
+  const endTime = day.endOf("day").toDate();
+
+  const yesterday = day.subtract(1, "days");
+  const startTimeYesterday = yesterday.startOf("day").toDate();
+  const endTimeYesterday = yesterday.endOf("day").toDate();
+
+  const billings = await Promise.all(
+    serviceNames.map(async serviceName => {
+      const billing = await metricStatics(serviceName, startTime, endTime);
+      return { service_name: serviceName, billing };
+    })
+  );
+  const billings2 = await Promise.all(
+    serviceNames.map(async serviceName => {
+      const billing = await metricStatics(
+        serviceName,
+        startTimeYesterday,
+        endTimeYesterday
+      );
+      return { service_name: serviceName, billing };
+    })
+  );
+
+  return billings.map(e => {
+    const serviceName = e.service_name;
+    const a = billings.filter(e => e.service_name === serviceName)[0];
+    const b = billings2.filter(e => e.service_name === serviceName)[0];
+    const diff = a.billing - b.billing;
+    e.diff = diff;
+    return e;
+  });
 }
 
 async function metricStatics(serviceName, startTime, endTime) {
@@ -74,10 +101,19 @@ function output(serviceBillings) {
   const totalBilling = serviceBillings
     .map(a => a.billing)
     .reduce((prev, current) => prev + current);
+  const diffTotal = serviceBillings
+    .map(a => a.diff)
+    .reduce((prev, current) => prev + current);
 
-  console.log(`total: ${humanizeDollar(totalBilling)}`);
+  console.log(
+    `total: ${humanizeDollar(totalBilling)} (+${humanizeDollar(diffTotal)})`
+  );
   serviceBillings.forEach(e => {
-    console.log(`${e.service_name}: ${humanizeDollar(e.billing)}`);
+    console.log(
+      `${e.service_name}: ${humanizeDollar(e.billing)} (+${humanizeDollar(
+        e.diff
+      )})`
+    );
   });
 }
 
