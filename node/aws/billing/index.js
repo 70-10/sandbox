@@ -4,8 +4,7 @@ const AWS = require("aws-sdk");
 AWS.config.setPromisesDependency(Promise);
 const numeral = require("numeral");
 const CloudWatch = new AWS.CloudWatch({
-  region: "us-east-1",
-  endpoint: "https://monitoring.us-east-1.amazonaws.com"
+  region: "us-east-1"
 });
 
 async function main() {
