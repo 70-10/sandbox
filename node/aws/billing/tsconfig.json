@@ -2,12 +2,18 @@
   "compileOnSave": true,
   "compilerOptions": {
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es6",
     "outDir": "lib/",
     "noImplicitAny": true,
     "removeComments": true,
     "sourceMap": false,
-    "declaration": true
+    "declaration": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src/**/*"

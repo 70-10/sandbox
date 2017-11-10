@@ -1,8 +1,10 @@
 import * as moment from "moment";
+import * as AWS from "aws-sdk";
+import * as numeral from "numeral";
+
 moment.locale("ja");
-const AWS = require("aws-sdk");
+
 AWS.config.setPromisesDependency(Promise);
-const numeral = require("numeral");
 const CloudWatch = new AWS.CloudWatch({
   region: "us-east-1"
 });
@@ -32,7 +34,11 @@ async function getServiceNames() {
     Namespace: "AWS/Billing"
   }).promise();
 
-  return flatten(Metrics.map((m: any )=> m.Dimensions))
+  if(!Metrics) {
+    return []
+  }
+
+  return flatten(Metrics.map((m: AWS.CloudWatch.Metric )=> m.Dimensions))
     .filter((m: any) => m.Name === "ServiceName")
     .map((m: any) => m.Value);
 }
