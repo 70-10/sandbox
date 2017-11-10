@@ -1,4 +1,4 @@
-const moment = require("moment");
+import * as moment from "moment";
 moment.locale("ja");
 const AWS = require("aws-sdk");
 AWS.config.setPromisesDependency(Promise);
@@ -15,14 +15,14 @@ async function main() {
   output(billings);
 }
 
-function flatten(ary) {
+function flatten(ary: any) {
   return ary.reduce(
-    (p, c) => (Array.isArray(c) ? p.concat(flatten(c)) : p.concat(c)),
+    (p: any, c: any) => (Array.isArray(c) ? p.concat(flatten(c)) : p.concat(c)),
     []
   );
 }
 
-function humanizeDollar(num) {
+function humanizeDollar(num: number) {
   return numeral(num).format("$0,0.00");
 }
 
@@ -32,12 +32,12 @@ async function getServiceNames() {
     Namespace: "AWS/Billing"
   }).promise();
 
-  return flatten(Metrics.map(m => m.Dimensions))
-    .filter(m => m.Name === "ServiceName")
-    .map(m => m.Value);
+  return flatten(Metrics.map((m: any )=> m.Dimensions))
+    .filter((m: any) => m.Name === "ServiceName")
+    .map((m: any) => m.Value);
 }
 
-async function getServiceBillings(serviceNames, day) {
+async function getServiceBillings(serviceNames: string[], day: moment.Moment) {
   const startTime = day.startOf("day").toDate();
   const endTime = day.endOf("day").toDate();
 
@@ -62,17 +62,17 @@ async function getServiceBillings(serviceNames, day) {
     })
   );
 
-  return billings.map(e => {
+  return billings.map((e: any) => {
     const serviceName = e.service_name;
-    const a = billings.filter(e => e.service_name === serviceName)[0];
-    const b = billings2.filter(e => e.service_name === serviceName)[0];
+    const a: any = billings.filter((e: any) => e.service_name === serviceName)[0];
+    const b: any = billings2.filter((e: any) => e.service_name === serviceName)[0];
     const diff = a.billing - b.billing;
     e.diff = diff;
     return e;
   });
 }
 
-async function metricStatics(serviceName, startTime, endTime) {
+async function metricStatics(serviceName: string, startTime: Date, endTime: Date) {
   const { Datapoints } = await CloudWatch.getMetricStatistics({
     MetricName: "EstimatedCharges",
     Namespace: "AWS/Billing",
@@ -91,23 +91,23 @@ async function metricStatics(serviceName, startTime, endTime) {
   return Datapoints[0].Average;
 }
 
-function output(serviceBillings) {
+function output(serviceBillings: any) {
   if (serviceBillings.length <= 0) {
     console.log("total: $0");
     return;
   }
 
   const totalBilling = serviceBillings
-    .map(a => a.billing)
-    .reduce((prev, current) => prev + current);
+    .map((a: any) => a.billing)
+    .reduce((prev: number, current: number) => prev + current);
   const diffTotal = serviceBillings
-    .map(a => a.diff)
-    .reduce((prev, current) => prev + current);
+    .map((a: any) => a.diff)
+    .reduce((prev: number, current: number) => prev + current);
 
   console.log(
     `total: ${humanizeDollar(totalBilling)} (+${humanizeDollar(diffTotal)})`
   );
-  serviceBillings.forEach(e => {
+  serviceBillings.forEach((e:any) => {
     console.log(
       `${e.service_name}: ${humanizeDollar(e.billing)} (+${humanizeDollar(
         e.diff

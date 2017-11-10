@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,10 @@
     "aws-sdk": "^2.145.0",
     "moment": "^2.19.1",
     "numeral": "^2.0.6"
+  },
+  "devDependencies": {
+    "@types/moment": "^2.13.0",
+    "@types/node": "^8.0.50",
+    "typescript": "^2.6.1"
   }
 }
