@@ -28,7 +28,7 @@ function humanizeDollar(num: number) {
   return numeral(num).format("$0,0.00");
 }
 
-async function getServiceNames() {
+async function getServiceNames() : Promise<string[]> {
   const { Metrics } = await CloudWatch.listMetrics({
     MetricName: "EstimatedCharges",
     Namespace: "AWS/Billing"
@@ -52,13 +52,13 @@ async function getServiceBillings(serviceNames: string[], day: moment.Moment) {
   const endTimeYesterday = yesterday.endOf("day").toDate();
 
   const billings = await Promise.all(
-    serviceNames.map(async serviceName => {
+    serviceNames.map(async (serviceName: string) => {
       const billing = await metricStatics(serviceName, startTime, endTime);
       return { service_name: serviceName, billing };
     })
   );
   const billings2 = await Promise.all(
-    serviceNames.map(async serviceName => {
+    serviceNames.map(async (serviceName: string) => {
       const billing = await metricStatics(
         serviceName,
         startTimeYesterday,
@@ -78,7 +78,7 @@ async function getServiceBillings(serviceNames: string[], day: moment.Moment) {
   });
 }
 
-async function metricStatics(serviceName: string, startTime: Date, endTime: Date) {
+async function metricStatics(serviceName: string, startTime: Date, endTime: Date) : Promise<number | undefined> {
   const { Datapoints } = await CloudWatch.getMetricStatistics({
     MetricName: "EstimatedCharges",
     Namespace: "AWS/Billing",
