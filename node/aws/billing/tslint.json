@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "align": [true, "parameters", "arguments", "statements"],
+    "indent": [true, "spaces"],
+    "semicolon": [true, "always"]
+  }
+}

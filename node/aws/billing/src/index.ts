@@ -35,7 +35,7 @@ async function getServiceNames() : Promise<string[]> {
   }).promise();
 
   if(!Metrics) {
-    return []
+    return [];
   }
 
   return flatten(Metrics.map((m: AWS.CloudWatch.Metric )=> m.Dimensions))
