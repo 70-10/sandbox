@@ -1,6 +1,6 @@
 import * as moment from "moment";
 import * as AWS from "aws-sdk";
-import * as numeral from "numeral";
+import { humanizeDollar, flatten } from "./util";
 
 moment.locale("ja");
 
@@ -15,17 +15,6 @@ async function main() {
   const billings = await getServiceBillings(serviceNames, yesterday);
 
   output(billings);
-}
-
-function flatten(ary: any) {
-  return ary.reduce(
-    (p: any, c: any) => (Array.isArray(c) ? p.concat(flatten(c)) : p.concat(c)),
-    []
-  );
-}
-
-function humanizeDollar(num: number) {
-  return numeral(num).format("$0,0.00");
 }
 
 async function getServiceNames() : Promise<string[]> {
