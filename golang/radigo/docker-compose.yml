@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+  radigo:
+    build: .
+    image: radigo
+    volumes:
+      - ./files:/tmp/radigo
