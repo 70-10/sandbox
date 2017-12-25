@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  neologd:
+    build: ./tools/mecab-ipadic-neologd
+    image: mecab-ipadic-neologd
+    volumes:
+      - ./dict:/usr/lib/mecab/dic/mecab-ipadic-neologd
+  app:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
