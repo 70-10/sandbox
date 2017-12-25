@@ -27,7 +27,7 @@
   $(() => {
   const socket = io();
   $("form").submit(() => {
-    socket.emit("chat message", $("#m").val());
+    socket.emit("chat message", { type: "browser", message: $("#m").val() });
     $("#m").val("");
     return false;
   });
