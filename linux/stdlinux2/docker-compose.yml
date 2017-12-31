@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  dev:
+    build: .
+    image: normal-linux
+    volumes:
+      - ./src:/stdlinux2
+    working_dir: /stdlinux2
+    command: sh
