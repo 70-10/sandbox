@@ -1,0 +1,30 @@
+{
+  "name": "nuxt-pra",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "PORT=8000 nuxt"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@nuxtjs/axios": "^4.5.2",
+    "nuxt": "^1.0.0-rc11"
+  },
+  "devDependencies": {
+    "bulma": "^0.6.1",
+    "eslint": "^4.14.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-vue": "^2.0.2",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-plugin-vue": "^2.1.0",
+    "font-awesome": "^4.7.0",
+    "node-sass": "^4.7.2",
+    "prettier": "^1.9.2",
+    "pug": "^2.0.0-rc.4",
+    "sass-loader": "^6.0.6"
+  }
+}
