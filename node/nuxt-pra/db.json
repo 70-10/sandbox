@@ -1,8 +1,15 @@
 {
   "listened": [
     {
+      "id": 1,
       "artist": { "id": 1, "name": "artist1" },
       "album": { "id": 2, "name": "album1" },
+      "date": "2017/11/11"
+    },
+    {
+      "id": 2,
+      "artist": { "id": 3, "name": "artist2" },
+      "album": { "id": 4, "name": "album2" },
       "date": "2017/11/11"
     }
   ]

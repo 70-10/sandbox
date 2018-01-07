@@ -7,7 +7,8 @@ div
   section.section
     .container
       ul
-        li(v-for="item in list") {{ item.date }} {{ item.album.name }} - {{ item.artist.name }}
+        li(v-for="item in list")
+          a(v-bind:href="'/' + item.id" ) {{item.id}}{{ item.date }} {{ item.album.name }} - {{ item.artist.name }}
 </template>
 
 <script>
