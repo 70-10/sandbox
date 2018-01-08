@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  describe-ec2:
+    build: .
+    image: python3-boto3
+    volumes:
+      - ./describe-ec2:/work
+      - ~/.aws:/root/.aws
+    environment:
+      AWS_PROFILE: ${AWS_PROFILE}
+    command: python index.py
