@@ -16,7 +16,7 @@ export default {
   async asyncData({ app }) {
     let data = await app.$axios.$get("/listened");
     return { list: data };
-  }
+  },
 };
 </script>
 

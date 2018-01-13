@@ -14,7 +14,7 @@ export default {
   async asyncData({ app, params }) {
     let data = await app.$axios.$get(`/listened/${params.id}`);
     return { item: data };
-  }
+  },
 };
 </script>
 

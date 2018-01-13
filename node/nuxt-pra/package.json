@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "PORT=8000 nuxt"
+    "dev": "PORT=8000 nuxt",
+    "lint": "prettier-eslint \"./@(pages)/**/*.@(vue|js)\""
   },
   "keywords": [],
   "author": "",
@@ -16,14 +17,14 @@
   "devDependencies": {
     "bulma": "^0.6.1",
     "eslint": "^4.15.0",
-    "eslint-config-prettier": "^2.9.0",
     "eslint-config-vue": "^2.0.2",
     "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-vue": "^4.1.0",
     "font-awesome": "^4.7.0",
     "node-sass": "^4.7.2",
     "prettier": "^1.9.2",
+    "prettier-eslint": "^8.7.4",
+    "prettier-eslint-cli": "^4.7.0",
     "pug": "^2.0.0-rc.4",
     "sass-loader": "^6.0.6"
   }
