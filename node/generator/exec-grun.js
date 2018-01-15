@@ -1,4 +1,8 @@
 const grun = require("./generator-runner");
-const { fileReadAndWrite } = require("./fs-async");
+const { readFile, writeFile } = require("./fs-async");
 
-grun(fileReadAndWrite);
+grun(function*() {
+  const data = yield Promise.all([readFile("a.txt"), readFile("b.txt"), readFile("c.txt")]);
+
+  yield writeFile("d.txt", data.join(""));
+});
