@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  build:
+    build: ./tools/build
+    image: sls-build-golang
+    volumes:
+      - ./:/go/src/sls-golang-sample
+    working_dir: /go/src/sls-golang-sample
+    environment:
+      GOOS: linux
+    command: build.sh
+  deploy:
+    build: ./tools/deploy
+    image: sls-deploy:1.25.0
+    volumes:
+      - .:/home/lambda
+      - ~/.aws:/root/.aws
+    environment:
+      - "AWS_PROFILE=${AWS_PROFILE}"
+      - "NODE_ENV=${NODE_ENV}"
+    working_dir: /home/lambda
+    command: deploy.sh

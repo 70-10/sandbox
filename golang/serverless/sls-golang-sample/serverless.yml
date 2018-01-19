@@ -1,0 +1,18 @@
+service: sls-goleng-sample
+
+provider:
+  name: aws
+  runtime: go1.x
+  timeout: 10
+  stage: DEV
+  region: ap-northeast-1
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  hello:
+    handler: bin/main
