@@ -15,7 +15,8 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "google-home-notifier": "^1.2.0"
+    "google-home-notifier": "^1.2.0",
+    "ngrok": "^2.2.25"
   },
   "devDependencies": {
     "eslint": "^4.16.0",
