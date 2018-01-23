@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 
 app.use(express.static("public"));
 
-app.post("/", async (req, res) => {
+app.post("/notify", async (req, res) => {
   const language = req.body.language;
   const message = req.body.message;
   if (!message) {
@@ -27,8 +27,12 @@ app.post("/", async (req, res) => {
   res.send({ status: "OK" });
 });
 
-app.get("/play", async (req, res) => {
-  const url = `${PublicURL}/omake1.mp3`;
+app.post("/play", async (req, res) => {
+  const sound = req.body.sound;
+  if (!sound) {
+    res.status(400);
+  }
+  const url = `${PublicURL}/${sound}.mp3`;
   console.log(url);
   const result = await play(url);
   res.send({ status: "OK", result });
