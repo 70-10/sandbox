@@ -1,0 +1,42 @@
+html
+  head
+    title Google Home Notifier
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css")
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js", integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=", crossorigin="anonymous")
+  body
+    section.section
+      .container
+        h1.title Google Home Notifier
+        .field.is-grouped
+          .control.is-expanded
+            input#message.input(type="text", placeholder="Google Homeに喋らせる内容")
+          .control
+            .select
+              select#language
+                option(value="ja") 日本語
+                option(value="en") 英語
+                option(value="it") イタリア語
+                option(value="de") ドイツ語
+                option(value="ko") 韓国語
+                option(value="vi") ベトナム語
+        .field
+          .control
+            button#notify.button.is-primary Notify
+    script(type='text/javascript').
+      $(() => {
+        $("button#notify").click(() => {
+          $.ajax({
+            url: "/notify",
+            type: "POST",
+            data: {
+              message: $("input#message").val(),
+              language: $("select#language").val()
+            }
+          }).done(data => {
+            console.log(data)
+            $("input#message").val("");
+          }).fail(err => {
+            console.error(err);
+          })
+        })
+      });

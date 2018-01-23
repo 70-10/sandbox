@@ -16,6 +16,11 @@ app.use((req, res, next) => {
 });
 
 app.use(express.static("public"));
+app.set("view engine", "pug");
+
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
 app.post("/notify", async (req, res) => {
   const language = req.body.language;
