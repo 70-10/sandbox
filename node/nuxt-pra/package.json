@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@nuxtjs/axios": "^4.5.2",
-    "nuxt": "^1.1.1"
+    "nuxt": "^1.2.1"
   },
   "devDependencies": {
     "bulma": "^0.6.2",
@@ -23,7 +23,7 @@
     "font-awesome": "^4.7.0",
     "node-sass": "^4.7.2",
     "prettier": "^1.10.2",
-    "prettier-eslint": "^8.8.0",
+    "prettier-eslint": "^8.8.1",
     "prettier-eslint-cli": "^4.7.0",
     "pug": "^2.0.0-rc.4",
     "sass-loader": "^6.0.6"
