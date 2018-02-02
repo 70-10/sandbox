@@ -1,6 +1,8 @@
-const visibilityFilter = (state = "SHOW_ALL", action) => {
+import { ActionTypes, FilterTypes } from "../common";
+
+const visibilityFilter = (state = FilterTypes.All, action) => {
   switch (action.type) {
-    case "SET_VISIBILITY_FILTER":
+    case ActionTypes.SetVisibilityFilter:
       return action.filter;
     default:
       return state;
