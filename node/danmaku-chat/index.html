@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Danmaku Chat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"/>
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <div id="danmaku" style="width:640px;height:360px;background-image: url('https://bulma.io/images/placeholders/640x320.png');"></div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <form action="">
+            <div class="field has-addons">
+              <div class="control">
+                <input id="m" class="input" type="text" autocomplete="off" />
+              </div>
+              <div class="control">
+                <button class="button is-info">Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+  <script src="/static/js/danmaku.min.js" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script type="text/javascript">
+  $(() => {
+  const danmaku = new Danmaku();
+  danmaku.init({
+    container: document.getElementById("danmaku")
+  });
+  const socket = io();
+  $("form").submit(() => {
+    socket.emit("chat message", { type: "browser", message: $("#m").val() });
+    $("#m").val("");
+    return false;
+  });
+
+  socket.on("chat message", msg => {
+    danmaku.emit({
+      text: msg,
+      style: {
+        fontSize: "20px",
+        color: "#000000"
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
