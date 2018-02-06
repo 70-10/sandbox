@@ -8,7 +8,7 @@ services:
     working_dir: /go/src/sls-golang-sample
     environment:
       GOOS: linux
-    command: build.sh
+    command: make build
   deploy:
     build: ./tools/deploy
     image: sls-deploy:1.25.0
