@@ -7,7 +7,7 @@
   <title>Danmaku Chat</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css"/>
 </head>
-<body>
+<body style="background-color: #ddd;">
   <section class="section">
     <div class="container">
       <h2 class="subtitle">
@@ -15,7 +15,8 @@
       </h2>
       <div class="columns">
         <div class="column">
-          <div id="danmaku" style="width:100%;height:360px;background-image: url('https://bulma.io/images/placeholders/640x320.png');"></div>
+          <div id="danmaku" style="width:100%;height:600px;position:absolute;"></div>
+          <iframe src="http://example.com" frameborder="0" style="width:100%;height:600px;"></iframe>
         </div>
       </div>
       <div class="columns">
@@ -33,7 +34,13 @@
         </div>
       </div>
       <div class="columns">
-        <div class="column"><button class="button clap">👏</button></div>
+        <div class="column">
+          <div class="buttons">
+            <button class="button emoji">👏</button>
+            <button class="button emoji">👍</button>
+            <button class="button emoji">👌</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -58,8 +65,8 @@
     danmaku.emit({
       text: msg,
       style: {
-        fontSize: "20px",
-        color: "#000000"
+        fontSize: "25px",
+        color: "#fff"
       }
     });
   });
@@ -72,8 +79,8 @@
     $("#comment-count").text(count);
   });
 
-  $("button.clap").on("click", () => {
-    socket.emit("chat message", { type: "browser", message: "👏" });
+  $("button.emoji").on("click", function() {
+    socket.emit("chat message", { type: "browser", message: $(this).text() });
   });
 });
 </script>
