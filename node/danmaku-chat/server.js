@@ -1,3 +1,4 @@
+const ngrok = require("ngrok");
 const express = require("express");
 const http = require("http");
 const socketio = require("socket.io");
@@ -36,6 +37,14 @@ io.on("connection", socket => {
   });
 });
 
-server.listen(port, () => {
-  console.log(`start: ${port}`);
+function ngrokConnect(port) {
+  return new Promise((resolve, reject) =>
+    ngrok.connect(port, (err, url) => (err ? reject(err) : resolve(url)))
+  );
+}
+
+server.listen(port, async () => {
+  const url = await ngrokConnect(port);
+  console.log(`Server start: ${port}`);
+  console.log(`ngrok: ${url}`);
 });
