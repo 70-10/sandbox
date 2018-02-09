@@ -29,7 +29,8 @@ $(() => {
   });
 
   socket.on("count", count => {
-    $("#count").text(count);
+    $("#count").text(count.viewer);
+    $("#all-count").text(count.all);
   });
 
   socket.on("comment-count", count => {

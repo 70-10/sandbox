@@ -10,6 +10,7 @@ const io = socketio(server);
 const port = process.env.PORT || 3000;
 let viewerCount = 0;
 let commentCount = 0;
+let allCount = 0;
 
 app.set("view engine", "pug");
 app.use("/static", express.static("public"));
@@ -19,15 +20,16 @@ io.on("connection", socket => {
   console.log(`a user connected`);
 
   viewerCount++;
+  allCount++;
   console.log(viewerCount);
-  io.emit("count", viewerCount);
+  io.emit("count", { viewer: viewerCount, all: allCount });
   io.emit("comment-count", commentCount);
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
     viewerCount--;
     console.log(viewerCount);
-    io.emit("count", viewerCount);
+    io.emit("count", { viewer: viewerCount, all: allCount });
   });
   socket.on("chat message", async msg => {
     console.log(msg);
