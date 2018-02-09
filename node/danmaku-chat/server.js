@@ -10,8 +10,9 @@ const port = process.env.PORT || 3000;
 let viewerCount = 0;
 let commentCount = 0;
 
+app.set("view engine", "pug");
 app.use("/static", express.static("public"));
-app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`));
+app.get("/", (req, res) => res.render("index"));
 
 io.on("connection", socket => {
   console.log(`a user connected`);

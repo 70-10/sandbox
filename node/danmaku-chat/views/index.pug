@@ -1,0 +1,108 @@
+doctype html
+
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible" content="ie=edge")
+    title Viewer
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css")
+    script(defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js")
+  body(style="background-color: #ddd;")
+    section.section
+      .container
+        nav.level
+          .level-left
+            p.level-item.has-text-centered
+              img(src="/static/img/logo.png" style="height:100px;")
+
+          .level-item.has-text-centered
+            div
+              p.heading 視聴者数
+              p.title#count
+          .level-item.has-text-centered
+            div
+              p.heading コメント数
+              p.title#comment-count
+
+          .level-right
+            p.level-item.has-text-centered
+              a(href="https://example.com" target="_blank")
+                span.icon.is-small.is-left
+                  i.fa.fa-external-link-alt
+                span イベント詳細
+
+        .columns
+          .column
+            #danmaku(style="width:100%;height:600px;position:absolute;")
+            iframe(src="http://example.com" frameborder="0" style="width:100%;height:600px;")
+
+        .columns
+          .column
+            form
+              .field.has-addons
+                .field.has-addons
+                  p.control.has-icons-left
+                    span.icon.is-small.is-left
+                      i.fa.fa-user
+                    input#name.input(type="text" placeholder="Name")
+
+                .control.is-expanded
+                  input#m.input(type="text" autocomplete="off" placeholder="comment")
+
+                .control
+                  button.button.is-info Send
+
+        .columns
+          .column
+            .buttons
+              button.button.is-rounded.emoji 👍
+              button.button.is-rounded.emoji 😂😂😂
+              button.button.is-rounded.emoji 👏👏👏
+
+    script(src="/socket.io/socket.io.js" charset="utf-8")
+    script(src="/static/js/danmaku.min.js" charset="utf-8")
+    script(src="https://code.jquery.com/jquery-1.11.1.js")
+    script(type="text/javascript").
+      $(() => {
+        $("input#name").val(localStorage.name);
+        const danmaku = new Danmaku();
+        danmaku.init({
+          container: document.getElementById("danmaku")
+        });
+        const socket = io();
+        $("form").submit(() => {
+          const name = $("input#name").val();
+
+          if (name && name !== localStorage.name) {
+            localStorage.name = name;
+          }
+
+          const message = name ? `${$("#m").val()}@${name}` : $("#m").val();
+          socket.emit("chat message", { type: "browser", message });
+          $("#m").val("");
+          return false;
+        });
+
+        socket.on("chat message", msg => {
+          danmaku.emit({
+            text: msg,
+            style: {
+              fontSize: "25px",
+              color: "#fff"
+            }
+          });
+        });
+
+        socket.on("count", count => {
+          $("#count").text(count);
+        });
+
+        socket.on("comment-count", count => {
+          $("#comment-count").text(count);
+        });
+
+        $("button.emoji").on("click", function() {
+          socket.emit("chat message", { type: "browser", message: $(this).text() });
+        });
+      });

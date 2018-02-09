@@ -13,6 +13,7 @@
   "dependencies": {
     "danmaku": "^1.3.0",
     "express": "^4.16.2",
+    "pug": "^2.0.0-rc.4",
     "socket.io": "^2.0.4"
   }
 }
