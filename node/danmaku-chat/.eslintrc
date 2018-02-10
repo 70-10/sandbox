@@ -1,0 +1,22 @@
+root: true
+env:
+  es6: true
+  node: true
+  mocha: true
+  browser: true
+  jquery: true
+extends:
+  - eslint:recommended
+plugins:
+  - node
+parserOptions:
+  sourceType: module
+  ecmaVersion: 2017
+rules:
+  linebreak-style: [error, unix]
+  no-console: 0
+  require-yield: off
+  node/exports-style: [error, module.exports]
+  node/no-deprecated-api: error
+  node/no-missing-require: error
+  node/no-unsupported-features: error
