@@ -2,7 +2,7 @@ $(() => {
   $("input#name").val(localStorage.name);
   const danmaku = new Danmaku();
   danmaku.init({
-    container: document.getElementById("danmaku")
+    container: document.getElementById("danmaku"),
   });
   const socket = io();
   $("form").submit(() => {
@@ -23,18 +23,15 @@ $(() => {
       text: msg,
       style: {
         fontSize: "25px",
-        color: "#fff"
-      }
+        color: "#fff",
+      },
     });
   });
 
   socket.on("count", count => {
     $("#count").text(count.viewer);
     $("#all-count").text(count.all);
-  });
-
-  socket.on("comment-count", count => {
-    $("#comment-count").text(count);
+    $("#comment-count").text(count.comment);
   });
 
   $("button.emoji").on("click", function() {

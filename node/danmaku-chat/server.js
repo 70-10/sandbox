@@ -8,6 +8,11 @@ const server = http.Server(app);
 const io = socketio(server);
 
 const port = process.env.PORT || 3000;
+const count = {
+  viewer: 0,
+  all: 0,
+  comment: 0,
+};
 let viewerCount = 0;
 let commentCount = 0;
 let allCount = 0;
@@ -19,30 +24,26 @@ app.get("/", (req, res) => res.render("index"));
 io.on("connection", socket => {
   console.log(`a user connected`);
 
-  viewerCount++;
-  allCount++;
-  console.log(viewerCount);
-  io.emit("count", { viewer: viewerCount, all: allCount });
-  io.emit("comment-count", commentCount);
+  count.viewer++;
+  count.all++;
+  io.emit("count", count);
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
-    viewerCount--;
-    console.log(viewerCount);
-    io.emit("count", { viewer: viewerCount, all: allCount });
+    count.viewer--;
+    io.emit("count", count);
   });
   socket.on("chat message", async msg => {
     console.log(msg);
     // msg = {type: "string", message: "string"}
     io.emit("chat message", msg.message);
-    io.emit("comment-count", ++commentCount);
+    count.comment++;
+    io.emit("count", count);
   });
 });
 
 function ngrokConnect(port) {
-  return new Promise((resolve, reject) =>
-    ngrok.connect(port, (err, url) => (err ? reject(err) : resolve(url)))
-  );
+  return new Promise((resolve, reject) => ngrok.connect(port, (err, url) => (err ? reject(err) : resolve(url))));
 }
 
 server.listen(port, async () => {
