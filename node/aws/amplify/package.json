@@ -10,6 +10,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "aws-amplify": "^0.1.20"
+    "aws-amplify": "^0.2.7"
   }
 }
