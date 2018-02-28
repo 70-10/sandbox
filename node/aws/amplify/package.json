@@ -10,6 +10,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "aws-amplify": "^0.2.7"
+    "aws-amplify": "^0.2.9",
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1"
   }
 }

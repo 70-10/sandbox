@@ -1,3 +1,5 @@
+require("es6-promise").polyfill();
+require("isomorphic-fetch");
 const Amplify = require("aws-amplify").default;
 const { Auth, API } = Amplify;
 
@@ -9,10 +11,13 @@ Amplify.configure({
     userPoolWebClientId: "**************************"
   },
   API: {
+    region: "ap-northeast-1",
     endpoints: [
       {
         name: "API",
-        endpoint: "https://**********.execute-api.ap-northeast-1.amazonaws.com"
+        endpoint: "https://custom.domain.com",
+        service: "execute-api",
+        region: "ap-northeast-1"
       }
     ]
   }
