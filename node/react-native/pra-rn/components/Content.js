@@ -13,7 +13,11 @@ import {
 
 export default props => {
   const renderItem = item => (
-    <ListItem thumbnail>
+    <ListItem
+      thumbnail
+      button
+      onPress={() => props.navigation.navigate("Detail", item)}
+    >
       <Left>
         <Thumbnail
           square
