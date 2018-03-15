@@ -2,7 +2,7 @@ const AWS = require("aws-sdk");
 const uuid = require("uuid");
 
 const Kinesis = new AWS.Kinesis({
-  endpoint: "http://localhost:4568/",
+  endpoint: "http://localhost:4567/",
   region: "ap-northeast-1",
   sslEnabled: false
 });

@@ -4,18 +4,19 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "dev":
-      "KINESIS_ENDPOINT=\"http://localhost:4568/\" STREAM_NAME=\"sample-stream\" node run-local.js",
-    "create:stream": "node create-stream.js",
+    "dev": "DEBUG=kinesis-offline-sample:* node run-local.js",
     "create:record": "node create-record.js"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "debug": "^3.1.0"
+  },
   "devDependencies": {
     "@rabblerouser/local-kinesis-lambda-runner": "^0.2.5",
     "aws-sdk": "^2.208.0",
+    "kinesalite": "^1.11.6",
     "serverless": "^1.26.1",
     "uuid": "^3.2.1"
   }
