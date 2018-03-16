@@ -7,5 +7,5 @@ provider:
   stage: DEV
 
 functions:
-  hello:
-    handler: handler.hello
+  PutRecord:
+    handler: handler.putRecord

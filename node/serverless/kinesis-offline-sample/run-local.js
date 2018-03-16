@@ -5,7 +5,7 @@ process.env.STREAM_NAME = "sample-stream";
 const run = require("@rabblerouser/local-kinesis-lambda-runner");
 const kinesalite = require("kinesalite");
 const AWS = require("aws-sdk");
-const { hello } = require("./handler");
+const { putRecord } = require("./handler");
 
 const Kinesis = new AWS.Kinesis({
   endpoint: process.env.KINESIS_ENDPOINT,
@@ -30,7 +30,7 @@ async function main() {
     StreamName: process.env.STREAM_NAME
   }).promise();
 
-  run(hello);
+  run(putRecord);
 }
 
 main().catch(console.error);

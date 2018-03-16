@@ -1,6 +1,6 @@
 const debug = require("debug")("kinesis-offline-sample:handler");
 
-module.exports.hello = (event, context, callback) => {
+module.exports.putRecord = (event, context, callback) => {
   const { Records } = event;
 
   const records = Records.map(r => ({
