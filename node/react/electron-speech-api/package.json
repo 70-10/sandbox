@@ -1,0 +1,24 @@
+{
+  "name": "electron-speech-sample",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "electron": "^1.8.4",
+    "foreman": "^2.0.0",
+    "react-scripts": "^1.1.1"
+  },
+  "dependencies": {
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1"
+  },
+  "homepage": "./",
+  "main": "src/electron.js",
+  "scripts": {
+    "start": "react-scripts start -p 8080",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "dev": "nf start -p 8080"
+  }
+}
