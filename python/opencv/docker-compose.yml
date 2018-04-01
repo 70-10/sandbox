@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  anaconda:
+  jupyter:
     build: .
     image: opencv-python-jupyter
     working_dir: /workspace
