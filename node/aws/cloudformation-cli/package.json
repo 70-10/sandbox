@@ -18,7 +18,9 @@
   "dependencies": {
     "aws-sdk": "^2.223.1",
     "chalk": "^2.3.2",
-    "commander": "^2.15.1"
+    "commander": "^2.15.1",
+    "make-dir": "^1.2.0",
+    "mustache": "^2.3.0"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

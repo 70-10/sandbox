@@ -2,9 +2,14 @@
 
 const program = require("commander");
 const chalk = require("chalk");
-const { validate } = require("../lib/actions");
+const { init, validate } = require("../lib/actions");
 
 program.version(require("../package").version).usage("<command> [options]");
+
+program
+  .command("init <template-name>")
+  .description("generate a template")
+  .action(init);
 
 program.command("validate").action(() => {
   const template = require("../templates");
