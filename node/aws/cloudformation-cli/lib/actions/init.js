@@ -22,7 +22,12 @@ async function init(...args) {
   }
 
   await makeDir(`${name}/templates`);
-  const templateMst = await read(path.resolve(__dirname, "template.mustache"), "utf8");
-  console.log(templateMst);
-  await write(`${name}/templates/index.js`, mustache.render(templateMst, { description: name }));
+  const templateMst = await read(path.resolve(__dirname, "templates", "template.mustache"), "utf8");
+  const package = await read(path.join(__dirname, "templates", "package.json.mustache"), "utf8");
+  const index = await read(path.join(__dirname, "templates", "index.mustache"), "utf8");
+  await Promise.all([
+    write(`${name}/templates/index.js`, mustache.render(templateMst, { description: name })),
+    write(`${name}/package.json`, mustache.render(package, { name })),
+    write(`${name}/index.js`, mustache.render(index)),
+  ]);
 }
