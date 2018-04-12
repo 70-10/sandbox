@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "cloudformation-cli": "index.js"
+    "cloudformation-cli": "bin/index.js",
+    "cfn": "bin/index.js"
   },
   "engines": {
     "node": ">=8"

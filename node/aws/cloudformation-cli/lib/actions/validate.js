@@ -11,11 +11,12 @@ module.exports = (...args) => {
 };
 
 async function validate(...args) {
-  const [fileName] = args;
-  const template = require(path.join(process.cwd(), fileName));
+  const [project_path] = args;
+  const absolutePath = project_path.startsWith("/") ? project_path : path.join(process.cwd(), project_path || ".");
+  const stack = require(absolutePath);
 
-  await CloudFormation.validateTemplate({ TemplateBody: JSON.stringify(template) }).promise();
+  await CloudFormation.validateTemplate({ TemplateBody: JSON.stringify(stack.template) }).promise();
   console.log(chalk.green("Template is valid."));
   console.log("--------------------");
-  console.log(JSON.stringify(template, null, 2));
+  console.log(JSON.stringify(stack.template, null, 2));
 }

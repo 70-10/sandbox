@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const program = require("commander");
-const { init, validate } = require("../lib/actions");
+const { init, validate, deploy } = require("../lib/actions");
 
 program.version(require("../package").version).usage("<command> [options]");
 
@@ -11,9 +11,14 @@ program
   .action(init);
 
 program
-  .command("validate <stack-file>")
+  .command("validate [project-path]")
   .description("validate cloudformation stack template")
-  .action(validate);
+  .action(project_path => validate(project_path || "."));
+
+program
+  .command("deploy [project-path]")
+  .description("Deploy CloudFormation stack")
+  .action(project_path => deploy(project_path || "."));
 
 program.parse(process.argv);
 
