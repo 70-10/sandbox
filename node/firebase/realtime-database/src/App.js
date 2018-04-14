@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import firebase from "firebase";
+import moment from "moment";
 
 function auth() {
   return new Promise(resolve => firebase.auth().onAuthStateChanged(resolve));
@@ -24,7 +25,8 @@ class App extends Component {
       mail: "",
       photoURL: "",
       albums: {},
-      input_vlaue: ""
+      input_artist: "",
+      input_album: ""
     };
   }
 
@@ -71,15 +73,21 @@ class App extends Component {
     }
   }
 
-  changeInputValue(event) {
-    this.setState({ input_value: event.target.value });
+  changeInputAlbum(event) {
+    this.setState({ input_album: event.target.value });
+  }
+
+  changeInputArtist(event) {
+    this.setState({ input_artist: event.target.value });
   }
 
   addData() {
-    console.log(this.state.input_value);
-    this.database
-      .ref(`users/${this.state.uid}/albums/${this.state.input_value}`)
-      .set({ name: this.state.input_value });
+    const timestamp = Date.now();
+    this.database.ref(`users/${this.state.uid}/albums/${timestamp}`).set({
+      artist: this.state.input_artist,
+      album: this.state.input_album,
+      timestamp
+    });
   }
 
   render() {
@@ -122,21 +130,26 @@ class App extends Component {
           </div>
 
           <div className="columns">
-            <div className="colmun">
-              <h1 className="title">Database: {this.state.uid}</h1>
-            </div>
-          </div>
-
-          <div className="columns">
             <div className="column">
               <div className="field">
-                <label className="label">Name</label>
+                <label className="label">Artist</label>
                 <div className="control">
                   <input
                     type="text"
                     className="input"
-                    value={this.state.input_value}
-                    onChange={event => this.changeInputValue(event)}
+                    value={this.state.input_aritst}
+                    onChange={event => this.changeInputArtist(event)}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Album</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={this.state.input_album}
+                    onChange={event => this.changeInputAlbum(event)}
                   />
                 </div>
               </div>
@@ -148,7 +161,33 @@ class App extends Component {
 
           <div className="columns">
             <div className="column">
-              {JSON.stringify(this.state.albums, null, 2)}
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Artist</th>
+                    <th>Album</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.keys(this.state.albums)
+                    .reverse()
+                    .map(id => {
+                      const album = this.state.albums[id];
+                      return (
+                        <tr>
+                          <td>
+                            {moment(album.timestamp).format(
+                              "YYYY/MM/DD HH:mm:ss"
+                            )}
+                          </td>
+                          <td>{album.artist}</td>
+                          <td>{album.album}</td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
