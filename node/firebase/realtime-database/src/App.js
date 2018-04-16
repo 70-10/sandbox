@@ -2,6 +2,9 @@ import React, { Component } from "react";
 
 import firebase from "firebase";
 import moment from "moment";
+import flatten from "lodash.flatten";
+import sortBy from "lodash.sortby";
+import crypto from "crypto";
 
 function auth() {
   return new Promise(resolve => firebase.auth().onAuthStateChanged(resolve));
@@ -45,7 +48,6 @@ class App extends Component {
     this.database
       .ref(`users/${this.state.uid}/albums`)
       .on("value", snapshot => {
-        console.log(snapshot.val());
         this.setState({ albums: snapshot.val() });
       });
   }
@@ -82,15 +84,48 @@ class App extends Component {
   }
 
   addData() {
+    const hash = (buffer, options) => {
+      options = Object.assign(
+        {
+          outputFormat: "hex"
+        },
+        options
+      );
+
+      const hash = crypto.createHash("sha256");
+      hash.update(buffer, typeof buffer === "string" ? "utf8" : undefined);
+
+      if (options.outputFormat === "hex") {
+        return hash.digest("hex");
+      }
+
+      return hash.digest().buffer;
+    };
     const timestamp = Date.now();
-    this.database.ref(`users/${this.state.uid}/albums/${timestamp}`).set({
-      artist: this.state.input_artist,
-      album: this.state.input_album,
-      timestamp
-    });
+
+    const { input_artist, input_album } = this.state;
+
+    this.database
+      .ref(
+        `users/${this.state.uid}/albums/${hash(input_artist)}/${hash(
+          input_album
+        )}`
+      )
+      .set({
+        artist: input_artist,
+        album: input_album,
+        timestamp
+      });
   }
 
   render() {
+    const artists = Object.keys(this.state.albums).map(
+      key => this.state.albums[key]
+    );
+    const albums = sortBy(
+      flatten(artists.map(artist => Object.keys(artist).map(id => artist[id]))),
+      ["timestamp"]
+    ).reverse();
     return (
       <section className="section">
         <div className="container">
@@ -170,22 +205,15 @@ class App extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {Object.keys(this.state.albums)
-                    .reverse()
-                    .map(id => {
-                      const album = this.state.albums[id];
-                      return (
-                        <tr>
-                          <td>
-                            {moment(album.timestamp).format(
-                              "YYYY/MM/DD HH:mm:ss"
-                            )}
-                          </td>
-                          <td>{album.artist}</td>
-                          <td>{album.album}</td>
-                        </tr>
-                      );
-                    })}
+                  {albums.map(album => (
+                    <tr>
+                      <td>
+                        {moment(album.timestamp).format("YYYY/MM/DD HH:mm:ss")}
+                      </td>
+                      <td>{album.artist}</td>
+                      <td>{album.album}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
