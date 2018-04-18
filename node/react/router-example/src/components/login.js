@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import auth from "../auth";
 
-export default class Login extends React.Component {
+export default class Login extends Component {
   state = { isAuthenticated: auth.isAuthenticated };
 
   login() {
-    auth.authenticate(() => {
-      this.setState({ isAuthenticated: auth.isAuthenticated });
-    });
+    auth.authenticate();
   }
 
   render() {

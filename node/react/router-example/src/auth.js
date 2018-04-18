@@ -1,12 +1,22 @@
-// fakeAuth
+import { auth, GoogleAuthProvider } from "./firebase";
+
 export default {
   isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100);
+  async checkAuth() {
+    const user = await authenticate();
+    this.isAuthenticated = user ? true : false;
+    return this.isAuthenticated;
   },
-  signout(cb) {
+  authenticate() {
+    const provider = new GoogleAuthProvider();
+    auth.signInWithRedirect(provider);
+  },
+  async signout() {
+    await auth.signOut();
     this.isAuthenticated = false;
-    setTimeout(cb, 100);
   }
 };
+
+function authenticate() {
+  return new Promise(resolve => auth.onAuthStateChanged(resolve));
+}

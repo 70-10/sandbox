@@ -6,10 +6,9 @@ import auth from "../auth";
 export default class Top extends Component {
   state = { isAuthenticated: auth.isAuthenticated };
 
-  signOut() {
-    auth.signout(() => {
-      this.setState({ isAuthenticated: auth.isAuthenticated });
-    });
+  async signOut() {
+    await auth.signout();
+    this.setState({ isAuthenticated: auth.isAuthenticated });
   }
 
   render() {
