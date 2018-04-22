@@ -20,7 +20,7 @@ export default class App extends React.Component {
     await auth.checkAuth();
     this.setState({
       isAuthenticated: auth.isAuthenticated,
-      loading: true
+      loading: false
     });
   }
 

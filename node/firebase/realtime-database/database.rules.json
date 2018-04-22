@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "users": {
+      "$userId": {
+        "albums": {
+          ".read": "auth.uid == $userId",
+          ".write": "auth.uid == $userId"
+        },
+        "books": {
+          ".read": "auth.uid == $userId",
+          ".write": "auth.uid == $userId"
+        }
+      }
+    }
+  }
+}
