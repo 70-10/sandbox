@@ -10,6 +10,8 @@ import Login from "./components/login";
 import Top from "./components/top";
 import auth from "./auth";
 
+import "./main.css";
+
 export default class App extends React.Component {
   state = {
     isAuthenticated: auth.isAuthenticated,
@@ -29,11 +31,9 @@ export default class App extends React.Component {
       this.state.isAuthenticated ? props.children : <Redirect to="/login" />;
 
     const Loading = () => (
-      <section className="section">
-        <div className="container">
-          <h1 className="title">loading</h1>
-        </div>
-      </section>
+      <div className="pageloader is-white is-active">
+        <span className="title">Sign in check...</span>
+      </div>
     );
 
     return this.state.loading ? (

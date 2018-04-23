@@ -4,6 +4,7 @@ export default {
   isAuthenticated: false,
   async checkAuth() {
     const user = await authenticate();
+    this.user = user;
     this.isAuthenticated = user ? true : false;
     return this.isAuthenticated;
   },

@@ -13,12 +13,17 @@ export default class Login extends Component {
     return this.state.isAuthenticated ? (
       <Redirect to="/" />
     ) : (
-      <section className="section">
-        <div className="container">
-          <h1 className="title">Sign in</h1>
-          <button className="button" onClick={() => this.login()}>
-            Sign in
-          </button>
+      <section className="hero is-white is-fullheight">
+        <div className="hero-body">
+          <div className="container has-text-centered">
+            <h1 className="title">Sign in</h1>
+            <button className="button is-info" onClick={() => this.login()}>
+              <span class="icon">
+                <i class="fab fa-google" />
+              </span>
+              <span>Sign in with Google</span>
+            </button>
+          </div>
         </div>
       </section>
     );
