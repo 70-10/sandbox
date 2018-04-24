@@ -12,6 +12,7 @@ export default class Top extends Component {
   }
 
   render() {
+    const { user } = this.state;
     return this.state.isAuthenticated ? (
       <div>
         <nav className="navbar has-shadow is-spaced">
@@ -40,7 +41,7 @@ export default class Top extends Component {
         </nav>
         <section className="section">
           <div className="container">
-            <h2 className="subtitle">Top Page</h2>
+            <h2 className="subtitle">Hello, {user.displayName}</h2>
           </div>
         </section>
       </div>

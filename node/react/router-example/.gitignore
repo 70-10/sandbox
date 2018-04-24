@@ -64,4 +64,5 @@ typings/
 
 ### Project
 
-./src/**/*.css
+src/**/*.css
+build/
