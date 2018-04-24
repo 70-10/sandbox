@@ -1,0 +1,25 @@
+{
+  "name": "cognito",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "prettier-eslint --write \"./**/*.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.183.0",
+    "cloudformation-z": "0.0.5",
+    "config": "^1.29.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.15.0",
+    "eslint-plugin-node": "^5.2.1",
+    "prettier": "^1.10.2",
+    "prettier-eslint": "^8.7.4",
+    "prettier-eslint-cli": "^4.7.0"
+  }
+}
