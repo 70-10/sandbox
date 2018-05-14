@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  jupyter:
+    build: ./docker
+    image: with_ml_python
+    working_dir: /workspace
+    volumes:
+      - ./workspace:/workspace
+      - ./docker/jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
+    ports:
+      - 8888:8888
+    command: "/opt/conda/bin/jupyter notebook --notebook-dir=/workspace --ip='*' --port=8888 --no-browser --allow-root"
