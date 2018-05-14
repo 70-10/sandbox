@@ -4,4 +4,4 @@ services:
     build: .
     image: radigo
     volumes:
-      - ./files:/tmp/radigo
+      - ./output:/go/output
