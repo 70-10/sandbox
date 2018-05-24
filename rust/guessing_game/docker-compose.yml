@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  run:
+  cargo:
     build: ../
     image: rust:alpine
     volumes:
@@ -8,14 +8,4 @@ services:
     working_dir: /rust
     environment:
       USER: ${USER}
-    command: cargo run
-
-  release-build:
-    build: ../
-    image: rust:alpine
-    volumes:
-      - .:/rust
-    working_dir: /rust
-    environment:
-      USER: ${USER}
-    command: cargo build --release
+    entrypoint: cargo
