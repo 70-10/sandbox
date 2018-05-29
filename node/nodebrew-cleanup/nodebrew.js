@@ -8,7 +8,7 @@ module.exports = {
 };
 
 async function currentVersion() {
-  const { stdout } = await execa("nodebrew", ["ls"]);
+  const { stdout } = await exec(["ls"]);
   return stdout
     .split("\n")
     .filter(s => s.includes("current"))[0]
@@ -16,16 +16,20 @@ async function currentVersion() {
 }
 
 async function ls() {
-  const { stdout } = await execa("nodebrew", ["ls"]);
+  const { stdout } = await exec(["ls"]);
   return stdout.split("\n").filter(s => !s.includes("current") && s !== "");
 }
 
 async function uninstall(version) {
-  const { stdout } = await execa("nodebrew", ["uninstall", version]);
+  const { stdout } = await exec(["uninstall", version]);
   return stdout;
 }
 
 async function clean(version) {
-  const { stdout } = await execa("nodebrew", ["clean", version]);
+  const { stdout } = await exec(["clean", version]);
   return stdout;
+}
+
+async function exec(subcommands) {
+  return execa("nodebrew", subcommands);
 }
