@@ -1,0 +1,19 @@
+{
+  "name": "crypto-hash-cli",
+  "version": "0.1.0",
+  "description": "crypto-hash cli",
+  "main": "index.js",
+  "bin": {
+    "crypto-hash": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.15.1",
+    "crypto-hash": "^0.1.0"
+  }
+}
