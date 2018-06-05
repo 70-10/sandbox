@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { ActionType } from "../actions";
+import { routerReducer } from "react-router-redux";
 
 const counter = (state = { count: 0 }, action) => {
   switch (action.type) {
@@ -12,4 +13,4 @@ const counter = (state = { count: 0 }, action) => {
   }
 };
 
-export default combineReducers({ counter });
+export default combineReducers({ counter, router: routerReducer });
