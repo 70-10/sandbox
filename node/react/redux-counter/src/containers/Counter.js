@@ -1,11 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import {
-  increment,
-  decrement,
-  incrementAsync,
-  decrementAsync
-} from "../actions";
+import { increment, decrement, incrementAsync, decrementAsync } from "../actions";
 
 const mapStateToProps = (state, ownProps) => {
   return { num: state.counter.count };
@@ -16,17 +11,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onClickIncrement: num => dispatch(increment(num)),
     onClickDecrement: num => dispatch(decrement(num)),
     onClickIncrementAsync: num => dispatch(incrementAsync(num)),
-    onClickDecrementAsync: num => dispatch(decrementAsync(num))
+    onClickDecrementAsync: num => dispatch(decrementAsync(num)),
   };
 };
 
-const Counter = ({
-  num,
-  onClickIncrement,
-  onClickDecrement,
-  onClickIncrementAsync,
-  onClickDecrementAsync
-}) => (
+const Counter = ({ num, onClickIncrement, onClickDecrement, onClickIncrementAsync, onClickDecrementAsync }) => (
   <div>
     <h1 className="title">{num}</h1>
     <a
@@ -69,4 +58,7 @@ const Counter = ({
   </div>
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);

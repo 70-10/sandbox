@@ -1,0 +1,16 @@
+root: true
+env:
+  es6: true
+  browser: true
+extends:
+  - eslint:recommended
+  - plugin:react/recommended
+parserOptions:
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+rules:
+  linebreak-style: [error, unix]
+  no-console: 0
+  require-yield: off
+
