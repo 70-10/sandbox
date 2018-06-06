@@ -1,34 +1,66 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Counter from "./Counter";
+import { increment, decrement, incrementAsync, decrementAsync } from "../actions";
 
-const mapStateToProps = state => ({ pathname: state.router.location.pathname });
+const mapStateToProps = (state, ownProps) => {
+  return { num: state.counter.count };
+};
 
-const Top = () => (
-  <div>
-    <h1 className="title">Hello, World</h1>
-  </div>
-);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onClickIncrement: num => dispatch(increment(num)),
+    onClickDecrement: num => dispatch(decrement(num)),
+    onClickIncrementAsync: num => dispatch(incrementAsync(num)),
+    onClickDecrementAsync: num => dispatch(decrementAsync(num)),
+  };
+};
 
-const App = ({ pathname }) => (
+const Counter = ({ num, onClickIncrement, onClickDecrement, onClickIncrementAsync, onClickDecrementAsync }) => (
   <section className="section">
     <div className="container">
-      <nav className="breadcrumb">
-        <ul>
-          <li className={pathname === "/" ? "is-active" : ""}>
-            <Link to="/">Top</Link>
-          </li>
-          <li className={pathname === "/counter" ? "is-active" : ""}>
-            <Link to="/counter">Counter</Link>
-          </li>
-        </ul>
-      </nav>
+      <h1 className="title">{num}</h1>
+      <a
+        className="button is-primary"
+        onClick={e => {
+          e.preventDefault();
+          onClickIncrement();
+        }}
+      >
+        +1
+      </a>
+      <a
+        className="button is-danger"
+        onClick={e => {
+          e.preventDefault();
+          onClickDecrement(1);
+        }}
+      >
+        -1
+      </a>
 
-      <Route exact path="/" component={Top} />
-      <Route exact path="/counter" component={Counter} />
+      <a
+        className="button is-info"
+        onClick={e => {
+          e.preventDefault();
+          onClickIncrementAsync();
+        }}
+      >
+        Async +1
+      </a>
+      <a
+        className="button is-warning"
+        onClick={e => {
+          e.preventDefault();
+          onClickDecrementAsync(1);
+        }}
+      >
+        Async -1
+      </a>
     </div>
   </section>
 );
 
-export default connect(mapStateToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);
