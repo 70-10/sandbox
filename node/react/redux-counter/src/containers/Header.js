@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { goBack } from "react-router-redux";
+import PropTypes from "prop-types";
 
 const mapStateToProps = state => ({ pathname: state.router.location.pathname });
 const mapDispatchToProps = dispatch => ({ back: () => dispatch(goBack()) });
@@ -31,6 +32,11 @@ const Header = ({ pathname, back }) => (
     </div>
   </div>
 );
+
+Header.propTypes = {
+  pathname: PropTypes.string.isRequired,
+  back: PropTypes.func.isRequired,
+};
 
 export default connect(
   mapStateToProps,
