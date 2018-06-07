@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { increment, decrement, incrementAsync, decrementAsync } from "../actions";
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return { num: state.counter.count };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
   return {
     onClickIncrement: num => dispatch(increment(num)),
     onClickDecrement: num => dispatch(decrement(num)),
@@ -15,7 +15,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-const Counter = ({ num, onClickIncrement, onClickDecrement, onClickIncrementAsync, onClickDecrementAsync }) => (
+const Counter = ({
+  num,
+  onClickIncrement,
+  onClickDecrement,
+  onClickIncrementAsync,
+  onClickDecrementAsync,
+  onClickGetUsers,
+}) => (
   <section className="section">
     <div className="container">
       <h1 className="title">{num}</h1>

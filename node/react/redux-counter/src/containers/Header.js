@@ -23,8 +23,8 @@ const Header = ({ pathname, back }) => (
           <li className={pathname === "/" ? "is-active" : ""}>
             <Link to="/">Top</Link>
           </li>
-          <li className={pathname === "/about" ? "is-active" : ""}>
-            <Link to="/about">About</Link>
+          <li className={pathname === "/users" ? "is-active" : ""}>
+            <Link to="/users">Users</Link>
           </li>
         </ul>
       </nav>

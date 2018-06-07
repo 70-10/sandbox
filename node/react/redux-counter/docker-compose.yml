@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+  api:
+    image: 7010/json-server
+    ports:
+      - 8000:3000
+    volumes:
+      - ./tools/db.json:/db.json

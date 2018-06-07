@@ -13,4 +13,15 @@ const counter = (state = { count: 0 }, action) => {
   }
 };
 
-export default combineReducers({ counter, router: routerReducer });
+const initialState = { users: [] };
+
+const users = (state = initialState, action) => {
+  switch (action.type) {
+    case ActionType.Api.GetUsersSuccess:
+      return { users: action.users };
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({ counter, users, router: routerReducer });
