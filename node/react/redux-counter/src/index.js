@@ -12,13 +12,20 @@ import "./index.css";
 import App from "./containers/App";
 import Users from "./containers/Users";
 import Header from "./containers/Header";
+import logger from "redux-logger";
 import registerServiceWorker from "./registerServiceWorker";
 
 const history = createHistory();
 const historyMiddleware = routerMiddleware(history);
-
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducers, applyMiddleware(historyMiddleware, sagaMiddleware));
+
+const middlewares = [historyMiddleware, sagaMiddleware];
+
+if (process.env.NODE_ENV === "development") {
+  middlewares.push(logger);
+}
+
+const store = createStore(reducers, applyMiddleware(...middlewares));
 
 sagaMiddleware.run(rootSaga);
 
