@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUsers } from "../actions";
+import { Creator } from "../actions";
 import PropTypes from "prop-types";
 
 const mapStateToProps = state => {
@@ -9,7 +9,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    dispatchGetUsers: () => dispatch(getUsers()),
+    dispatchGetUsers: () => dispatch(Creator.Users.getUsers()),
   };
 };
 
