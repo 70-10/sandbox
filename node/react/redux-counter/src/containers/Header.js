@@ -9,7 +9,7 @@ const mapDispatchToProps = dispatch => ({ back: () => dispatch(goBack()) });
 
 const Header = ({ pathname, back }) => (
   <div>
-    <nav className="navbar is-info">
+    <nav className="navbar is-primary">
       <div className="container">
         <div className="navbar-brand">
           <a href="" className="navbar-item">

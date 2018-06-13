@@ -1,0 +1,11 @@
+$primary: rgb(61, 141, 88);
+
+@import "../node_modules/bulma/sass/utilities/initial-variables";
+@import "../node_modules/bulma/sass/utilities/functions";
+
+$blue: #337ab7;
+
+$family-serif: "Merriweather", "Georgia", serif;
+$primary: $blue;
+
+@import "../node_modules/bulma/bulma";
