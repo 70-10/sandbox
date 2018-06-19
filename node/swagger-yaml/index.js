@@ -3,7 +3,7 @@ const yaml = require("js-yaml");
 const path = require("path");
 const fs = require("fs");
 
-async function main(filePath) {
+async function parse(filePath) {
   const root = yaml.load(fs.readFileSync(filePath).toString());
   const options = {
     filter: ["relative", "remote"],
@@ -12,12 +12,14 @@ async function main(filePath) {
     }
   };
   const result = await resolveRefs(root, options);
-  console.log(yaml.dump(result.resolved));
+  return yaml.dump(result.resolved);
 }
 
 module.exports = swaggerFile => {
   const filePath = swaggerFile
     ? path.join(process.cwd(), swaggerFile)
     : path.join(process.cwd(), "index.yml");
-  main(filePath).catch(console.error);
+  parse(filePath)
+    .then(console.log)
+    .catch(console.error);
 };
