@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "lib": ["es2015"],
+    "outDir": "dist",
+    "removeComments": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
