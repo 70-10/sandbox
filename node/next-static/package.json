@@ -1,0 +1,28 @@
+{
+  "name": "next-static",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "next start",
+    "dev": "next",
+    "build": "next build",
+    "export": "next export",
+    "prestart": "npm run build",
+    "preexport": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bulma": "^0.7.1",
+    "next": "^6.0.3",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "@zeit/next-sass": "^0.2.0",
+    "next-progressbar": "^1.0.0",
+    "node-sass": "^4.9.0"
+  }
+}
