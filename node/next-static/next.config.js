@@ -4,7 +4,8 @@ const withSass = require("@zeit/next-sass");
 module.exports = withProgressBar(
   withSass({
     exportPathMap: defaultPathMap => ({
-      "/": { page: "/" }
+      "/": { page: "/" },
+      "/about": { page: "/about" }
     })
   })
 );
