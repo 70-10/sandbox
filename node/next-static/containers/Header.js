@@ -1,8 +1,10 @@
 import "../styles/app.scss";
 import { connect } from "react-redux";
 import { Creator } from "../actions";
-import Link from "next/link";
+
 import ClassNames from "classnames";
+
+import Link from "./Link";
 
 const mapStateToProps = state => ({
   menu_opened: state.menu.opened
@@ -28,10 +30,8 @@ const Header = ({ menu_opened, toggleMenu }) => {
     <nav className="navbar">
       <div className="container">
         <div className="navbar-brand">
-          <Link href="/">
-            <a className="navbar-item">
-              <strong>Next Static</strong>
-            </a>
+          <Link className="navbar-item" to="/">
+            <strong>Next Static</strong>
           </Link>
           <span className={burger} onClick={toggleMenu}>
             <span />
@@ -41,8 +41,8 @@ const Header = ({ menu_opened, toggleMenu }) => {
         </div>
         <div className={navbarMenu}>
           <div className="navbar-end">
-            <Link href="/about">
-              <a className="navbar-item">About</a>
+            <Link className="navbar-item" to="/about">
+              About
             </Link>
           </div>
         </div>
