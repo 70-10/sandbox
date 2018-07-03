@@ -1,0 +1,23 @@
+{
+  "name": "testing-fetch",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=TEST mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "config": "^1.30.0",
+    "cross-env": "^5.2.0",
+    "cross-fetch": "^2.2.2"
+  },
+  "devDependencies": {
+    "fetch-mock": "^6.5.0",
+    "intelli-espower-loader": "^1.0.1",
+    "mocha": "^5.2.0",
+    "power-assert": "^1.6.0"
+  }
+}
