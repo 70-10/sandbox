@@ -1,0 +1,41 @@
+{
+  "name": "ts-functional",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha test/**/*.test.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^5.2.4",
+    "@types/node": "^10.5.4",
+    "espower-typescript": "^9.0.0",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "power-assert": "^1.6.0",
+    "ts-node": "^7.0.0",
+    "typescript": "^3.0.1"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "json",
+      "html",
+      "text"
+    ],
+    "sourceMap": true,
+    "all": true
+  }
+}
