@@ -4,6 +4,7 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
+    "dev": "serverless offline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -12,6 +13,8 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.10",
     "@types/node": "^10.5.6",
+    "serverless": "^1.29.2",
+    "serverless-offline": "^3.25.6",
     "serverless-webpack": "^5.2.0",
     "ts-loader": "^4.4.2",
     "typescript": "^3.0.1",
