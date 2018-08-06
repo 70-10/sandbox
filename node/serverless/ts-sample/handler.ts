@@ -1,13 +1,13 @@
-import { APIGatewayEvent, Callback, Context, Handler } from 'aws-lambda';
+import { APIGatewayEvent, Context, Handler, APIGatewayProxyResult } from "aws-lambda";
 
-export const hello: Handler = (event: APIGatewayEvent, context: Context, cb: Callback) => {
+export const hello: Handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      message: 'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!',
+      message: "Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!",
       input: event,
     }),
   };
 
-  cb(null, response);
-}
+  return response;
+};
