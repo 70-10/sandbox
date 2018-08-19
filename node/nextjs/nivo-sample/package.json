@@ -1,0 +1,24 @@
+{
+  "name": "nivo-sample",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@nivo/calendar": "^0.43.0",
+    "bulma": "^0.7.1",
+    "moment": "^2.22.2",
+    "next": "^6.1.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
+    "@zeit/next-sass": "^0.2.0",
+    "node-sass": "^4.9.3"
+  }
+}
