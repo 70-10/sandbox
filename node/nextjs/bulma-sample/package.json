@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "bulma": "^0.7.1",
+    "bulma-carousel": "^3.0.0",
     "bulma-timeline": "^3.0.0",
     "next": "^6.1.1",
     "react": "^16.4.2",
