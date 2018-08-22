@@ -1,0 +1,37 @@
+service: resource-policy-sample
+frameworkVersion: ">=1.28.0"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: ap-northeast-1
+
+  resourcePolicy:
+    - Effect: Allow
+      Principal: "*"
+      Action: execute-api:Invoke
+      Resource:
+        - execute-api:/*/*/*
+      Condition:
+        IpAddress:
+          aws:SourceIp:
+            - "xxx.xxx.xxx.xxx"
+    - Effect: Deny
+      Principal: "*"
+      Action: execute-api:Invoke
+      Resource:
+        - execute-api:/*/GET/world
+      Condition:
+        IpAddress:
+          aws:SourceIp:
+            - "xxx.xxx.xxx.xxx"
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http: GET /hello
+  world:
+    handler: handler.world
+    events:
+      - http: GET /world
