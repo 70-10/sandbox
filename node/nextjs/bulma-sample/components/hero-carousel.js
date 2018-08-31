@@ -9,61 +9,56 @@ export default class extends Component {
   render() {
     return (
       <div>
-        <section className="section">
-          <div className="columns">
-            <div className="column">
-              <div
-                className="carousel carousel-animated carousel-animate-fade"
-                data-autoplay="true"
-                style={{
-                  maxWidth: "92%",
-                  maxHeight: "460px",
-                  marginLeft: "auto",
-                  marginRight: "auto"
-                }}
-              >
-                <div className="carousel-container">
-                  <div className="carousel-item has-background is-active">
-                    <img
-                      className="is-background"
-                      src="https://wikiki.github.io/images/merry-christmas.jpg"
-                      alt=""
-                      // width="640"
-                      // height="310"
-                    />
-                  </div>
-                  <div className="carousel-item has-background">
-                    <img
-                      className="is-background"
-                      src="https://wikiki.github.io/images/singer.jpg"
-                      alt=""
-                      // width="640"
-                      // height="310"
-                    />
-                  </div>
-                  <div className="carousel-item has-background">
-                    <img
-                      className="is-background"
-                      src="https://wikiki.github.io/images/sushi.jpg"
-                      alt=""
-                      // width="640"
-                      // height="310"
-                    />
-                  </div>
-                  <div className="carousel-item has-background">
-                    <img
-                      className="is-background"
-                      src="https://wikiki.github.io/images/life.jpg"
-                      alt=""
-                      width="640"
-                      height="310"
-                    />
-                  </div>
+        <div className="columns">
+          <div className="column">
+            <div
+              className="carousel carousel-animated carousel-animate-fade"
+              data-autoplay="true"
+              style={{
+                maxHeight: "680px"
+              }}
+            >
+              <div className="carousel-container">
+                <div className="carousel-item has-background is-active">
+                  <img
+                    className="is-background"
+                    src="https://wikiki.github.io/images/merry-christmas.jpg"
+                    alt=""
+                    width="640"
+                    height="310"
+                  />
+                </div>
+                <div className="carousel-item has-background">
+                  <img
+                    className="is-background"
+                    src="https://wikiki.github.io/images/singer.jpg"
+                    alt=""
+                    width="640"
+                    height="310"
+                  />
+                </div>
+                <div className="carousel-item has-background">
+                  <img
+                    className="is-background"
+                    src="https://wikiki.github.io/images/sushi.jpg"
+                    alt=""
+                    width="640"
+                    height="310"
+                  />
+                </div>
+                <div className="carousel-item has-background">
+                  <img
+                    className="is-background"
+                    src="https://wikiki.github.io/images/life.jpg"
+                    alt=""
+                    width="640"
+                    height="310"
+                  />
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
         <section className="hero is-fullheight">
           <div className="hero-body">
             <div className="container">
