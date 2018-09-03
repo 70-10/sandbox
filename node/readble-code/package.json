@@ -12,7 +12,9 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "lodash.times": "^4.3.2"
+  },
   "devDependencies": {
     "eslint": "^5.4.0",
     "eslint-plugin-node": "^7.0.1",
