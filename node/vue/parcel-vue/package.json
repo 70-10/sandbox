@@ -1,0 +1,24 @@
+{
+  "name": "parcel-vue",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bulma": "^0.7.1",
+    "vue": "^2.5.17",
+    "vue-hot-reload-api": "^2.3.0"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.2.0",
+    "node-sass": "^4.9.3",
+    "parcel-bundler": "^1.9.7",
+    "prettier": "^1.14.2",
+    "vue-template-compiler": "^2.5.17"
+  }
+}
