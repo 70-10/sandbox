@@ -1,0 +1,16 @@
+{
+  "name": "basic-auth",
+  "version": "0.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^2.0.9"
+  },
+  "dependencies": {}
+}

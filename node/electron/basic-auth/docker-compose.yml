@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  server:
+    image: node:10-alpine
+    volumes:
+      - ./server:/workspace
+      - node_modules:/workspace/node_modules
+    working_dir: /workspace
+    command: sh -c 'npm install && npm start'
+    ports:
+      - 3000:3000
+
+volumes:
+  node_modules:
