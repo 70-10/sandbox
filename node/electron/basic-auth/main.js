@@ -7,3 +7,13 @@ function createWindow() {
 }
 
 app.on("ready", createWindow);
+
+app.on("login", (event, webContents, request, authInfo, callback) => {
+  console.log("Login");
+  if (authInfo.isProxy) {
+    // do nothing
+    return;
+  }
+  event.preventDefault();
+  callback("user", "password");
+});
