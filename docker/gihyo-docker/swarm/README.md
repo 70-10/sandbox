@@ -51,3 +51,15 @@ execute at worker01, worker02 and worker03
 ```
 > docker container exec -it manager docker service rm echo
 ```
+
+## create overlay network
+
+```
+> docker container exec -it manager docker network create --driver=overlay --attachable ch03
+```
+
+## deploy stack
+
+```
+> docker container exec -it manager docker stack deploy -c /stack/ch03-webapi.yml echo
+```
