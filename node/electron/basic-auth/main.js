@@ -15,5 +15,10 @@ app.on("login", (event, webContents, request, authInfo, callback) => {
     return;
   }
   event.preventDefault();
+  const subWindow = new BrowserWindow({
+    parent: win,
+    modal: true
+  });
+  subWindow.loadFile("auth.html");
   callback("user", "password");
 });
