@@ -11,10 +11,20 @@
 <body>
     <h1>Auth</h1>
     <label>username</label>
-    <input type="text" class="input">
+    <input type="text" id="username" class="input">
 
     <label>Password</label>
-    <input type="password" class="input">
+    <input type="password" id="password" class="input">
+
+    <button id="auth" onclick="submit()">送信</button>
+    <script type="text/javascript">
+        const { ipcRenderer } = require("electron");
+        function submit() {
+            const username = document.querySelector("#username").value;
+            const password = document.querySelector("#password").value;
+            ipcRenderer.send("authorization", { username, password })
+        }
+    </script>
 </body>
 
 </html>

@@ -1,6 +1,8 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 
 let win;
+let loginCallback;
+let subWindow;
 function createWindow() {
   win = new BrowserWindow({ width: 800, height: 600 });
   win.loadURL("http://localhost:3000");
@@ -15,10 +17,16 @@ app.on("login", (event, webContents, request, authInfo, callback) => {
     return;
   }
   event.preventDefault();
-  const subWindow = new BrowserWindow({
+  subWindow = new BrowserWindow({
     parent: win,
     modal: true
   });
   subWindow.loadFile("auth.html");
-  callback("user", "password");
+  loginCallback = callback;
+});
+
+ipcMain.on("authorization", (event, arg) => {
+  console.log(arg);
+  subWindow.close();
+  loginCallback(arg.username, arg.password);
 });
