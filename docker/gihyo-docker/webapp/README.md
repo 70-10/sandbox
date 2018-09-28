@@ -1,4 +1,4 @@
-# Web Application (Todo App) on Docker
+k# Web Application (Todo App) on Docker
 
 ## Prepare (init docker swarm)
 
@@ -22,4 +22,46 @@ execute at worker01, worker02 and worker03
 
 ```
 > docker container exec -it manager docker network create --driver=overlay --attachable todoapp
+```
+
+## Swarm
+
+### MySQL
+
+#### build image
+
+```
+> cd gihyodocker/tododb
+> docker image build -t ch04/tododb:latest .
+> docker image tag ch04/tododb:latest localhost:5000/ch04/tododb:latest
+> docker image push localhost:5000/ch04/tododb:latest
+```
+
+#### deploy stack
+
+```
+docker container exec -it manager docker stack deploy -c /stack/todo-mysql.yml todo_mysql
+```
+
+#### init data
+
+```
+> docker container exec -it manager docker service ps todo_mysql_master --no-trunc --filter "desired-state=running" --format "docker container exec -it {{.Node}} docker container exec -it {{.Name}}.{{.ID}} init-data.sh"
+```
+
+### API
+
+#### build image
+
+```
+> cd gihyodocker/todoapi
+> docker image build -t ch04/todoapi:latest .
+> docker image tag ch04/todoapi:latest localhost:5000/ch04/todoapi:latest
+> docker image push localhost:5000/ch04/todoapi:latest
+```
+
+#### deploy stack
+
+```
+> docker container exec -it manager docker stack deploy -c /stack/todo-app.yml todo_app
 ```
