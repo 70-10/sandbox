@@ -1,26 +1,23 @@
-import React, { Component } from "react";
-
+import { Component } from "react";
 import firebase from "firebase";
-firebase.initializeApp({
+
+const config = {
   apiKey: "",
   authDomain: "",
   databaseURL: "",
   projectId: "",
   storageBucket: "",
   messagingSenderId: ""
-});
+};
 
-function auth() {
-  return new Promise(resolve => firebase.auth().onAuthStateChanged(resolve));
-}
-
-class App extends Component {
+export default class Top extends Component {
   constructor(props) {
     super(props);
     this.state = { name: "", mail: "" };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
+    firebase.initializeApp(config);
     const user = await auth().catch(console.error);
     if (user) {
       this.setState({ name: user.displayName, mail: user.email });
@@ -55,16 +52,17 @@ class App extends Component {
       <div>
         <h2 className="subtitle">Name : {this.state.name}</h2>
         <h2 className="subtitle">Email: {this.state.mail}</h2>
-
         <button className="button" onClick={() => this.signIn()}>
-          SignIn
+          sign in
         </button>
         <button className="button" onClick={() => this.signOut()}>
-          SingOut
+          sign out
         </button>
       </div>
     );
   }
 }
 
-export default App;
+function auth() {
+  return new Promise(resolve => firebase.auth().onAuthStateChanged(resolve));
+}
