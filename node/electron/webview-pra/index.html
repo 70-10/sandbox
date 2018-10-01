@@ -21,14 +21,18 @@
 </head>
 
 <body>
+    <button onclick="asyncLink()">Link</button>
+    <webview id="browse" src="https://www.github.com/"></webview>
+    <script>
+        const { ipcRenderer } = require('electron')
 
-    <!-- <div class="columns"> -->
-    <!-- <div class="column is-four-fifths"> -->
-    <webview src="https://www.github.com/"></webview>
-    <!-- </div> -->
-    <!-- <div class="column">bbb</div> -->
-    <!-- </div> -->
-
+        function asyncLink() {
+            ipcRenderer.send('link');
+            ipcRenderer.on('reply', (event, arg) => {
+                document.getElementById("browse").setAttribute("src", arg)
+            });
+        }
+    </script>
 </body>
 
 </html>
