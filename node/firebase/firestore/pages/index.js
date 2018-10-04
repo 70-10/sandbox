@@ -1,15 +1,6 @@
 import { Component } from "react";
-import firebase from "firebase/app";
+import firebase from "../firebase";
 import "firebase/firestore";
-
-const config = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: ""
-};
 
 export default class Top extends Component {
   constructor(props) {
@@ -20,7 +11,6 @@ export default class Top extends Component {
   }
 
   async componentDidMount() {
-    firebase.initializeApp(config);
     const db = firebase.firestore();
     const settings = { timestampsInSnapshots: true };
     db.settings(settings);
@@ -34,7 +24,6 @@ export default class Top extends Component {
     const messages = [];
     querySnapshot.forEach(doc => messages.push(doc.data()));
     this.setState({ messages });
-    console.log(this.state.messages);
   }
 
   changeMessage(e) {
@@ -69,8 +58,8 @@ export default class Top extends Component {
         <button onClick={this.postMessage}>追加</button>
 
         <ul>
-          {this.state.messages.map(m => (
-            <li>{m.message}</li>
+          {this.state.messages.map((m, i) => (
+            <li key={i}>{m.message}</li>
           ))}
         </ul>
       </div>
