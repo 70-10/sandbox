@@ -65,3 +65,29 @@ docker container exec -it manager docker stack deploy -c /stack/todo-mysql.yml t
 ```
 > docker container exec -it manager docker stack deploy -c /stack/todo-app.yml todo_app
 ```
+
+### Nginx
+
+#### build image
+
+```
+> cd gihyodocker/todonginx
+> docker image build -t ch04/nginx:latest .
+> docker image tag ch04/nginx:latest localhost:5000/ch04/nginx:latest
+> docker image push localhost:5000/ch04/nginx:latest
+```
+
+#### deploy stack
+
+```
+> docker container exec -it manager docker stack deploy -c /stack/todo-app.yml todo_app
+```
+
+### Web
+
+```
+> cd gihyodocker/todoweb
+> docker image build -t ch04/todoweb:latest .
+> docker image tag ch04/todoweb:latest localhost:5000/ch04/todoweb:latest
+> docker image push localhost:5000/ch04/todoweb:latest
+```
