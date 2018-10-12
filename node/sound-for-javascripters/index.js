@@ -9,7 +9,12 @@ window.onload = () => {
   const oscArray = midiNoteArray.map(frequency => {
     const osc = audioContext.createOscillator();
     osc.frequency.value = convertMidiNoteToFrequency(frequency);
-    osc.connect(destination);
+
+    const gain = audioContext.createGain();
+    gain.gain.value = 0.2;
+
+    osc.connect(gain);
+    gain.connect(destination);
     return osc;
   });
 
