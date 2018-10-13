@@ -1,29 +1,26 @@
-import convertMidiNoteToFrequency from "./convertMidiNoteToFrequency";
+import Synth from "./synth";
 
-window.onload = () => {
-  const audioContext = new AudioContext();
-  const destination = audioContext.destination;
+const settings = "someSettings";
+const synth = new Synth(settings);
 
-  const midiNoteArray = [60, 64, 67, 71];
-
-  const oscArray = midiNoteArray.map(frequency => {
-    const osc = audioContext.createOscillator();
-    osc.frequency.value = convertMidiNoteToFrequency(frequency);
-
-    const gain = audioContext.createGain();
-    gain.gain.value = 0.2;
-
-    osc.connect(gain);
-    gain.connect(destination);
-    return osc;
-  });
-
-  const now = audioContext.currentTime;
-
-  oscArray.forEach((osc, index) => osc.start(now + index));
-
-  setInterval(() => {
-    oscArray.forEach(osc => osc.stop());
-    document.querySelector(".title").textContent = "Hello, Sound!";
-  }, 5000);
+const options1 = {
+  midiNoteNumber: 70
 };
+
+const result1 = synth.play(options1);
+console.log(result1);
+
+const options2 = {
+  midiNoteNumber: 70
+};
+
+const result2 = synth.stop(options2);
+
+console.log(result2);
+
+const options3 = {
+  midiNoteNumber: 100
+};
+
+const result3 = synth.stop(options3);
+console.log(result3);
