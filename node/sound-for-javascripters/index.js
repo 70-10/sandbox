@@ -1,26 +1,24 @@
 import Synth from "./synth";
+import createAudioContext from "./web-audio-api/create-audio-context";
 
-const settings = "someSettings";
-const synth = new Synth(settings);
+const audioContext = createAudioContext();
+const destination = audioContext.destination;
 
-const options1 = {
-  midiNoteNumber: 70
+const synth = new Synth({
+  audioContext,
+  nextNode: destination
+});
+
+const option1 = {
+  midiNoteNumber: 75,
+  wave: "sawtooth",
+  velocity: 100
 };
 
-const result1 = synth.play(options1);
-console.log(result1);
+synth.play(option1);
 
-const options2 = {
-  midiNoteNumber: 70
+const option2 = {
+  midiNoteNumber: 75
 };
 
-const result2 = synth.stop(options2);
-
-console.log(result2);
-
-const options3 = {
-  midiNoteNumber: 100
-};
-
-const result3 = synth.stop(options3);
-console.log(result3);
+setTimeout(() => synth.stop(option2), 2000);

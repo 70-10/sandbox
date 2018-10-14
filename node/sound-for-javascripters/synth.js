@@ -1,34 +1,57 @@
+import createOscillator from "./web-audio-api/create-oscillator";
+
 export default class Synth {
-  constructor(settings) {
-    this.settings = settings;
-    this.destination = "destination";
-    this.oscillatorArray = Array.from({ length: 128 });
-    console.log(this.oscillatorArray.map((o, index) => index));
+  constructor({ audioContext, nextNode }) {
+    this.audioContext = audioContext;
+    this.output = nextNode;
+    this.oscillatorArray = this.createOscillatorArray();
+    this.createOscillator = createOscillator({ audioContext });
   }
 
-  createOscillator({ midiNoteNumber, wave }) {
-    return `oscillator with ${midiNoteNumber}, ${wave}`;
+  createOscillatorArray() {
+    const vacantArray = Array.from({ length: 128 });
+    return vacantArray.map(o => ({
+      state: { midiNoteNumber: null, play: false },
+      osc: null
+    }));
   }
 
-  play({ midiNoteNumber }) {
-    const wave = "sine";
-    const oscillator = this.createOscillator({ midiNoteNumber, wave });
+  createGain(volume = 0.2) {
+    const gainNode = this.audioContext.createGain();
+    gainNode.gain.value = volume;
+    return gainNode;
+  }
 
-    this.oscillatorArray[midiNoteNumber] = oscillator;
+  play({ midiNoteNumber, startTime = 0 }) {
+    const osc = this.createOscillator({ midiNoteNumber });
+    const gain = this.createGain();
+    osc.connect(gain);
+    gain.connect(this.output);
+    osc.start(startTime);
 
-    console.log(this.oscillatorArray);
+    const state = {
+      play: true,
+      midiNoteNumber
+    };
+
+    const item = { osc, state };
+
+    this.oscillatorArray[midiNoteNumber] = item;
     return `play ${midiNoteNumber}`;
   }
 
-  stop({ midiNoteNumber }) {
-    const targetOscillator = this.oscillatorArray[midiNoteNumber];
+  stop({ midiNoteNumber, endTime = 0 }) {
+    const targetOscillator = this.oscillatorArray[midiNoteNumber].osc;
     if (!targetOscillator) {
       return `not ${midiNoteNumber} playing`;
     }
 
-    this.oscillatorArray[midiNoteNumber] = `stop ${midiNoteNumber}`;
+    targetOscillator.stop(endTime);
 
-    console.log(this.oscillatorArray);
+    const state = { play: false, midiNoteNumber: null };
+    this.oscillatorArray[midiNoteNumber].state = state;
+    this.oscillatorArray[midiNoteNumber].osc = null;
+
     return `stop ${midiNoteNumber}`;
   }
 }
