@@ -28,6 +28,11 @@ const vm = new Vue({
     },
     totalPriceWithTax() {
       return Math.floor(this.totalPrice * 1.08);
+    },
+    canBuy() {
+      return this.totalPrice >= 1000;
     }
   }
 });
+
+window.vm = vm;
