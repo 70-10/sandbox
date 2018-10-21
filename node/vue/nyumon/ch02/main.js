@@ -19,6 +19,12 @@ const vm = new Vue({
       return value.toString().replace(/(\d)(?=(\d{3})+$)/g, "$1,");
     }
   },
+  methods: {
+    doBuy() {
+      alert(`${this.totalPriceWithTax}円のお買い上げ！`);
+      this.items.forEach(item => (item.quantity = 0));
+    }
+  },
   computed: {
     totalPrice() {
       return this.items.reduce(
