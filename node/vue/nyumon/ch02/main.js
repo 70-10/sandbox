@@ -31,6 +31,12 @@ const vm = new Vue({
     },
     canBuy() {
       return this.totalPrice >= 1000;
+    },
+    errorMessageStyle() {
+      return {
+        border: this.canBuy ? "" : "1px solid red",
+        color: this.canBuy ? "" : "red"
+      };
     }
   }
 });
