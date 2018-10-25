@@ -6,15 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue Component</title>
+    <link rel="stylesheet" href="./main.css">
     <script src="https://unpkg.com/vue@2.5.17"></script>
 </head>
 
 <body>
-    <div id="fruits-component">
-        <ol>
-            <fruits-item-name v-for="fruit in fruitsItems" :key="fruit.name" :fruits-item="fruit"></fruits-item-name>
-        </ol>
+    <div id="login-example">
+        <user-login></user-login>
     </div>
+    <script type="text/x-template" id="login-template">
+        <div id="login-template">
+            <div><input type="text" placeholder="login id" v-model="userid"></div>
+            <div><input type="password" placeholder="password" v-model="password"></div>
+            <button @click="login">Login</button>
+        </div>
+    </script>
     <script src="./main.js"></script>
 </body>
 
