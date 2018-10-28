@@ -1,0 +1,15 @@
+{
+  "name": "ch05",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "parcel": "parcel"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "parcel-bundler": "^1.10.3"
+  }
+}

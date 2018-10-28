@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Router</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@2.5.17"></script>
+    <script src="https://unpkg.com/vue-router@3.0.1"></script>
+</head>
+
+<body>
+    <div id="app">
+        <nav v-cloak>
+            <router-link to="/top">トップページ</router-link>
+            <router-link to="/users">ユーザー一覧ページ</router-link>
+            <router-link to="/users/new?redirect=true">新規ユーザー登録</router-link>
+            <router-link to="/login" v-show="!Auth.loggedIn()">ログイン</router-link>
+            <router-link to="/logout" v-show="Auth.loggedIn()">ログアウト</router-link>
+        </nav>
+        <router-view></router-view>
+    </div>
+    <script type="text/x-template" id="user-list">
+        <div>
+            <div class="loading" v-if="loading">読み込み中</div>
+            <div class="error" v-if="error">{{ error }}</div>
+            <div v-for="user in users" :key="user.id">
+                <router-link :to="{ path: '/users' + user.id }">{{ user.name }}</router-link>
+            </div>
+        </div>
+    </script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
