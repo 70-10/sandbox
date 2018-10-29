@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue + animate.css</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+    <script src="https://unpkg.com/vue@2.5.17"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p><input type="text" v-model="animationClass"></p>
+        <button @click="isShown = !isShown">表示の切り替え</button>
+        <transition :enter-active-class="activeClass" :leave-active-class="activeClass">
+            <p v-show="isShown">Hello, World</p>
+        </transition>
+    </div>
+    <script src="./animate.js"></script>
+</body>
+
+</html>
