@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Custom Directive</title>
+    <script src="https://unpkg.com/vue@2.5.17"></script>
+</head>
+
+<body>
+    <div id="app">
+        <img v-fallback-image.once="noImageURL" src="https://jp.vuejs.org/images/logo.png" :alt="altText">
+        <img v-fallback-image.once="noImageURL" src="http://example.com/none.png" :alt="altText">
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
