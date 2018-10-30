@@ -1,0 +1,15 @@
+{
+  "name": "slot",
+  "version": "0.1.0",
+  "description": "",
+  "main": "single.js",
+  "scripts": {
+    "parcel": "parcel"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.10.3"
+  }
+}
