@@ -25,7 +25,19 @@ export default new Vuex.Store({
       { id: 3, text: "本" }
     ],
     nextTaskID: 3,
-    nextLabelID: 4
+    nextLabelID: 4,
+    filter: null
+  },
+  getters: {
+    filteredTasks(state) {
+      if (!state.filter) {
+        return state.tasks;
+      }
+
+      return state.tasks.filter(
+        task => task.labelIds.indexOf(state.filter) >= 0
+      );
+    }
   },
   mutations: {
     addTask(state, { name, labelIds }) {
@@ -46,6 +58,9 @@ export default new Vuex.Store({
     addLabel(state, { text }) {
       state.labels.push({ id: state.nextLabelID, text });
       state.nextLabelID++;
+    },
+    changeFilter(state, { filter }) {
+      state.filter = filter;
     }
   },
   actions: {}
