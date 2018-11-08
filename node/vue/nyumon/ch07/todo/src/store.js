@@ -61,7 +61,30 @@ export default new Vuex.Store({
     },
     changeFilter(state, { filter }) {
       state.filter = filter;
+    },
+    restore(state, { tasks, labels, nextTaskID, nextLabelID }) {
+      state.tasks = tasks;
+      state.labels = labels;
+      state.nextTaskID = nextTaskID;
+      state.nextLabelID = nextLabelID;
     }
   },
-  actions: {}
+  actions: {
+    save({ state }) {
+      const data = {
+        tasks: state.tasks,
+        labels: state.labels,
+        nextTaskID: state.nextTaskID,
+        nextLabelID: state.nextLabelID
+      };
+
+      localStorage.setItem("task-app-data", JSON.stringify(data));
+    },
+    restore({ commit }) {
+      const data = localStorage.getItem("task-app-data");
+      if (data) {
+        commit("restore", JSON.parse(data));
+      }
+    }
+  }
 });
