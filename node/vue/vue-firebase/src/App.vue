@@ -12,27 +12,22 @@
 </template>
 
 <script>
-import firebase from "firebase";
-
 export default {
   name: "app",
-  data() {
-    return {
-      user: {}
-    };
+  computed: {
+    user() {
+        return this.$store.state.user;
+    }
   },
   created() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.user = user ? user : {};
-    });
+    this.$store.dispatch("checkAuth");
   },
   methods: {
     login() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      firebase.auth().signInWithPopup(provider);
+      this.$store.dispatch("loginWithGoogle");
     },
     logout() {
-      firebase.auth().signOut();
+      this.$store.dispatch("logout");
     }
   }
 };
