@@ -14,11 +14,18 @@ export default new Vuex.Store({
   getters: {
     count(state) {
       return state.count;
+    },
+    settings(state) {
+      return state.settings;
     }
   },
   mutations: {
     reset(state, value) {
       state.count = value;
+    },
+    updateTimer(state, value) {
+      console.log("mutation: updateTimer");
+      state.settings.timer = Number(value);
     }
   },
   actions: {
