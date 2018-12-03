@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <div v-if="user.uid" key="login">
-      <p>{{ user.displayName }}</p>
-      <button type="button" @click="logout">ログアウト</button>
-    </div>
+    <div v-if="isLoading">Loading</div>
+    <div v-else>
+      <div v-if="user.uid" key="login">
+        <p>{{ user.displayName }}</p>
+        <button type="button" @click="logout">ログアウト</button>
+      </div>
 
-    <div v-else key="logout">
-      <button type="button" @click="login">ログイン</button>
+      <div v-else key="logout">
+        <button type="button" @click="login">ログイン</button>
+      </div>
     </div>
   </div>
 </template>
@@ -16,7 +19,10 @@ export default {
   name: "app",
   computed: {
     user() {
-        return this.$store.state.user;
+      return this.$store.state.user;
+    },
+    isLoading() {
+      return this.$store.state.isLoading;
     }
   },
   created() {
