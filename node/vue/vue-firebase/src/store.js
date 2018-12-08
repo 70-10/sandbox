@@ -4,6 +4,9 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+const authenticate = () =>
+  new Promise(resolve => firebase.auth().onAuthStateChanged(resolve));
+
 export default new Vuex.Store({
   state: {
     user: {},
@@ -26,12 +29,11 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    checkAuth({ commit }) {
+    async checkAuth({ commit }) {
       commit("startLoading");
-      firebase.auth().onAuthStateChanged(user => {
-        commit("setUser", user || {});
-        commit("stopLoading");
-      });
+      const user = await authenticate();
+      commit("setUser", user || {});
+      commit("stopLoading");
     },
     async loginWithGoogle({ commit }) {
       const provider = new firebase.auth.GoogleAuthProvider();

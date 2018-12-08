@@ -1,20 +1,10 @@
-import firebase from "firebase";
 import Vue from "vue";
 import App from "./App.vue";
-import store from './store'
+import store from "./store";
+
+import "./firebase";
 
 Vue.config.productionTip = false;
-
-const config = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: ""
-};
-
-firebase.initializeApp(config);
 
 new Vue({
   store,
