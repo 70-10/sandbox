@@ -37,12 +37,16 @@ export default new Vuex.Store({
     },
     async loginWithGoogle({ commit }) {
       const provider = new firebase.auth.GoogleAuthProvider();
+      commit("startLoading");
       const { user } = await firebase.auth().signInWithPopup(provider);
       commit("setUser", user);
+      commit("stopLoading");
     },
     logout({ commit }) {
+      commit("startLoading");
       firebase.auth().signOut();
       commit("setUser", {});
+      commit("stopLoading");
     }
   }
 });

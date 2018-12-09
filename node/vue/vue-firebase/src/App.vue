@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="isLoading">Loading</div>
+    <Loading v-if="isLoading"/>
     <div v-else>
       <div v-if="user.uid" key="login">
         <p>{{ user.displayName }}</p>
@@ -15,8 +15,13 @@
 </template>
 
 <script>
+import Loading from "./components/Loading";
+
 export default {
   name: "app",
+  components: {
+    Loading
+  },
   computed: {
     user() {
       return this.$store.state.user;
