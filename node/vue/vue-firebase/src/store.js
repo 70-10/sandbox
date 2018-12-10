@@ -10,7 +10,8 @@ const authenticate = () =>
 export default new Vuex.Store({
   state: {
     user: {},
-    isLoading: false
+    isLoading: false,
+    users: []
   },
   mutations: {
     setUser(state, payload) {
@@ -21,11 +22,17 @@ export default new Vuex.Store({
     },
     stopLoading(state) {
       state.isLoading = false;
+    },
+    setUsers(state, payload) {
+      state.users = payload;
     }
   },
   getters: {
     user(state) {
       return state.user;
+    },
+    users(state) {
+      return state.users;
     }
   },
   actions: {
@@ -47,6 +54,9 @@ export default new Vuex.Store({
       firebase.auth().signOut();
       commit("setUser", {});
       commit("stopLoading");
+    },
+    setUsers({ commit }, users) {
+      commit("setUsers", users);
     }
   }
 });

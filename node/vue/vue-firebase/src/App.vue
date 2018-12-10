@@ -5,6 +5,8 @@
       <div v-if="user.uid" key="login">
         <p>{{ user.displayName }}</p>
         <button type="button" @click="logout">ログアウト</button>
+        <h2>Users</h2>
+        <Users/>
       </div>
 
       <div v-else key="logout">
@@ -16,11 +18,13 @@
 
 <script>
 import Loading from "./components/Loading";
+import Users from "./components/Users";
 
 export default {
   name: "app",
   components: {
-    Loading
+    Loading,
+    Users
   },
   computed: {
     user() {
