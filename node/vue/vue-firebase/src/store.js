@@ -1,6 +1,11 @@
-import firebase from "firebase";
+import firebase from "./firebase";
+import { firebaseAction, firebaseMutations } from "vuexfire";
 import Vue from "vue";
 import Vuex from "vuex";
+
+const db = firebase.firestore();
+const settings = { timestampsInSnapshots: true };
+db.settings(settings);
 
 Vue.use(Vuex);
 
@@ -23,16 +28,11 @@ export default new Vuex.Store({
     stopLoading(state) {
       state.isLoading = false;
     },
-    setUsers(state, payload) {
-      state.users = payload;
-    }
+    ...firebaseMutations
   },
   getters: {
     user(state) {
       return state.user;
-    },
-    users(state) {
-      return state.users;
     }
   },
   actions: {
@@ -55,8 +55,8 @@ export default new Vuex.Store({
       commit("setUser", {});
       commit("stopLoading");
     },
-    setUsers({ commit }, users) {
-      commit("setUsers", users);
-    }
+    init: firebaseAction(({ bindFirebaseRef }) => {
+      bindFirebaseRef("users", db.collection("users"));
+    })
   }
 });

@@ -5,23 +5,12 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import { mapState } from "vuex";
 
 export default {
-  computed: {
-    users() {
-      return this.$store.getters.users;
-    }
-  },
-  async created() {
-    const db = firebase.firestore();
-    const settings = { timestampsInSnapshots: true };
-    db.settings(settings);
-
-    const querySnapshot = await db.collection("users").get();
-    const arr = [];
-    querySnapshot.forEach(doc => arr.push(doc.data()));
-    this.$store.dispatch("setUsers", arr);
+  computed: mapState(["users"]),
+  async mounted() {
+    this.$store.dispatch("init");
   }
 };
 </script>
