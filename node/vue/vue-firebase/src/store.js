@@ -2,10 +2,7 @@ import firebase from "./firebase";
 import { firebaseAction, firebaseMutations } from "vuexfire";
 import Vue from "vue";
 import Vuex from "vuex";
-
-const db = firebase.firestore();
-const settings = { timestampsInSnapshots: true };
-db.settings(settings);
+import db from "./db";
 
 Vue.use(Vuex);
 
@@ -55,8 +52,8 @@ export default new Vuex.Store({
       commit("setUser", {});
       commit("stopLoading");
     },
-    init: firebaseAction(({ bindFirebaseRef }) => {
-      bindFirebaseRef("users", db.collection("users"));
+    init: firebaseAction(async ({ bindFirebaseRef }) => {
+      await bindFirebaseRef("users", db.collection("users"));
     })
   }
 });
