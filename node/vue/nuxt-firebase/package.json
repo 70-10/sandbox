@@ -1,0 +1,36 @@
+{
+  "name": "nuxt-firebase",
+  "version": "1.0.0",
+  "description": "Nuxt Firebase",
+  "author": "70_10",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "firebase": "^5.7.0",
+    "nuxt": "^2.0.0",
+    "uuid": "^3.3.2",
+    "vuetify": "^1.2.4",
+    "vuex": "^3.0.1",
+    "vuexfire": "^3.0.0-alpha.14"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^5.0.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-vue": "^4.0.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "2.6.2",
+    "prettier": "1.14.3",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
+  }
+}
