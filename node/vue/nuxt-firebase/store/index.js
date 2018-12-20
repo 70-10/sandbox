@@ -18,7 +18,7 @@ function createStore() {
     },
     actions: {
       init: firebaseAction(async ({ bindFirebaseRef }) => {
-        await bindFirebaseRef("tweets", tweets);
+        await bindFirebaseRef("tweets", tweets.orderBy("timestamp", "desc"));
       }),
       addTweet({ commit }, message) {
         tweets.add({
