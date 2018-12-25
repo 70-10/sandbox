@@ -1,47 +1,42 @@
 <template>
-  <v-app>
-    <v-navigation-drawer app/>
-    <v-toolbar app/>
-    <v-content v-if="!user">
-      <v-container>
-        <p>Unauthroized</p>
-        <button @click="callAuth">Login</button>
-      </v-container>
-    </v-content>
-    <v-content v-else>
-      <v-container>
-        <button @click="logout">Logout</button>
-        <v-layout 
-          row 
-          wrap>
-          <v-flex>
-            <v-text-field
-              v-meta-ctrl-enter="addTweet"
-              v-model.trim="newMessage"
-              outline
-              label="Cmd + Enter"
-              single-line
-            />
-          </v-flex>
+  <v-content>
+    <v-container v-if="!user">
+      <p>Unauthroized</p>
+      <button @click="callAuth">Login</button>
+    </v-container>
 
-          <v-btn 
-            round 
-            color="info" 
-            @click="addTweet">Tweet</v-btn>
-        </v-layout>
-        <v-list two-line>
-          <template v-for="tweet in tweets">
-            <v-list-tile :key="tweet.id">
-              <v-list-tile-content>
-                <v-list-tile-title v-html="tweet.message"/>
-                <v-list-tile-sub-title v-html="dateFormat(tweet.timestamp.toDate())"/>
-              </v-list-tile-content>
-            </v-list-tile>
-          </template>
-        </v-list>
-      </v-container>
-    </v-content>
-  </v-app>
+    <v-container v-else>
+      <button @click="logout">Logout</button>
+      <v-layout 
+        row 
+        wrap>
+        <v-flex>
+          <v-text-field
+            v-meta-ctrl-enter="addTweet"
+            v-model.trim="newMessage"
+            outline
+            label="Cmd + Enter"
+            single-line
+          />
+        </v-flex>
+
+        <v-btn 
+          round 
+          color="info" 
+          @click="addTweet">Tweet</v-btn>
+      </v-layout>
+      <v-list two-line>
+        <template v-for="tweet in tweets">
+          <v-list-tile :key="tweet.id">
+            <v-list-tile-content>
+              <v-list-tile-title v-html="tweet.message"/>
+              <v-list-tile-sub-title v-html="dateFormat(tweet.timestamp.toDate())"/>
+            </v-list-tile-content>
+          </v-list-tile>
+        </template>
+      </v-list>
+    </v-container>
+  </v-content>
 </template>
 
 <script>
