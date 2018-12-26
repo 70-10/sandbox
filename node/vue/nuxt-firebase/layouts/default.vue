@@ -1,26 +1,25 @@
 <template>
   <v-app>
-    <v-toolbar app/>
+    <v-toolbar>
+      <v-toolbar-title>Nuxt Firebase</v-toolbar-title>
+      <v-spacer/>
+      <v-toolbar-items>
+        <v-btn 
+          v-if="user" 
+          flat 
+          @click="logout">Logout</v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
     <nuxt/>
   </v-app>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
-  data() {
-    return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
-      items: [
-        { icon: "apps", title: "Welcome", to: "/" },
-        { icon: "bubble_chart", title: "Inspire", to: "/inspire" }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: "Vuetify.js"
-    };
+  computed: mapState(["user"]),
+  methods: {
+    ...mapActions(["logout"])
   }
 };
 </script>
