@@ -15,11 +15,15 @@ function createStore() {
   return new Vuex.Store({
     state: {
       user: null,
-      tweets: []
+      tweets: [],
+      loading: true
     },
     mutations: {
       setUserInfo(state, userInfo) {
         state.user = userInfo;
+      },
+      setLoading(state, status) {
+        state.loading = status;
       },
       ...firebaseMutations
     },
@@ -38,11 +42,15 @@ function createStore() {
         firebase.auth().signInWithRedirect(provider);
       },
       async checkAuth({ commit }) {
+        commit("setLoading", true);
         commit("setUserInfo", await auth());
+        commit("setLoading", false);
       },
       logout({ commit }) {
+        commit("setLoading", true);
         firebase.auth().signOut();
         commit("setUserInfo", null);
+        commit("setLoading", false);
       }
     }
   });

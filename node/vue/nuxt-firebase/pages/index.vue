@@ -1,12 +1,15 @@
 <template>
   <v-content>
-    <v-container v-if="!user">
-      <p>Unauthroized</p>
+    <v-container 
+      v-if="loading" 
+      fill-height>
+      <Loading/>
+    </v-container>
+    <v-container v-else-if="!user">
       <button @click="callAuth">Login</button>
     </v-container>
 
     <v-container v-else>
-      <button @click="logout">Logout</button>
       <v-layout 
         row 
         wrap>
@@ -43,14 +46,16 @@
 import auth from "~/plugins/auth";
 import { mapState, mapActions } from "vuex";
 import { format } from "date-fns";
+import Loading from "~/components/Loading";
 
 export default {
+  components: { Loading },
   data() {
     return {
       newMessage: ""
     };
   },
-  computed: mapState(["user", "tweets"]),
+  computed: mapState(["user", "tweets", "loading"]),
   async mounted() {
     this.$store.dispatch("checkAuth");
     if (this.user) {

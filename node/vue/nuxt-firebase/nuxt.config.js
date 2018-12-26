@@ -34,9 +34,13 @@ module.exports = {
   css: ["~/assets/style/app.styl"],
 
   /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: ["@/plugins/vuetify", "@/plugins/meta-ctrl-enter"],
+   ** Plugins to load before mounting the App
+   */
+  plugins: [
+    "@/plugins/vuetify",
+    "@/plugins/meta-ctrl-enter",
+    "@/plugins/spinkit"
+  ],
 
   /*
   ** Nuxt.js modules
