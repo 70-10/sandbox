@@ -1,1 +1,7 @@
-d1 $sound "bd 808:3 bd 808:2"
+cps (128/60/4)
+
+d1 $ sound "[[~ hc]*2, bd*2 [glitch*3 [~ ~ glitch]]]"
+
+d2 $ iter 4 $ sound "bd cp bass hc"
+
+hush
