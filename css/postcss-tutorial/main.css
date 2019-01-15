@@ -1,0 +1,64 @@
+.container {
+  display: grid;
+  grid-template-columns: 160px 1fr 160px;
+  grid-template-rows: 60px 1fr 90px;
+}
+
+.header {
+  grid-column: 1/4;
+  grid-row: 1;
+}
+
+.header {
+  background-color: rgb(159, 235, 129);
+}
+
+.main {
+  grid-column: 2/3;
+  grid-row: 2;
+}
+
+.main {
+  height: 300px;
+  background-color: rgb(72, 174, 233);
+}
+
+.aside {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.aside {
+  background-color: rgb(238, 189, 144);
+}
+
+.nav {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.nav {
+  background-color: rgb(214, 140, 202);
+}
+
+.footer {
+  grid-column: 1/4;
+  grid-row: 3;
+}
+
+.footer {
+  background-color: rgb(238, 236, 136);
+}
+
+.tile {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.tile > div {
+  background-color: #2ecc71;
+  padding: 10px;
+  height: 80px;
+}
