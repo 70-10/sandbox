@@ -1,8 +1,9 @@
 import React from "react";
+import Layout from "../components/layout";
 
 export default () => (
-  <div style={{ color: `purple` }}>
-    <h1>Hello Gatsby!</h1>
-    <p>What a world.</p>
-  </div>
+  <Layout>
+    <h1>Top Page</h1>
+    <p>This is top page</p>
+  </Layout>
 );
