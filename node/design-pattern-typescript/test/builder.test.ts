@@ -1,4 +1,3 @@
-import * as assert from "power-assert";
 import RequestBuilder from "../src/builder";
 
 describe("builder test", () => {
@@ -12,8 +11,8 @@ describe("builder test", () => {
       .payload(null)
       .build();
 
-    assert(request.method === method);
-    assert(request.payload === null);
-    assert(request.url === url);
+      expect(request.method).toBe(method)
+      expect(request.payload).toBeNull()
+      expect(request.url).toBe(url)
   });
 });

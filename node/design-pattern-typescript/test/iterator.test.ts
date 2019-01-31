@@ -1,12 +1,11 @@
-import * as assert from "power-assert";
 import Iterator from "../src/iterator";
 
 describe("Iterator", () => {
   it("sanity", () => {
     const numbers = new Iterator([1, 2, 3]);
-    assert(numbers.next() === 1);
-    assert(numbers.next() === 2);
-    assert(numbers.next() === 3);
-    assert(numbers.hasNext() === false);
+    expect(numbers.next()).toBe(1);
+    expect(numbers.next()).toBe(2);
+    expect(numbers.next()).toBe(3);
+    expect(numbers.hasNext()).toBeFalsy();
   });
 });
