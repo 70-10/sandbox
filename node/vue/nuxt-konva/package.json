@@ -1,0 +1,31 @@
+{
+  "name": "nuxt-konva",
+  "version": "1.0.0",
+  "description": "My breathtaking Nuxt.js project",
+  "author": "70_10",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "konva": "^2.6.0",
+    "nuxt": "^2.4.2",
+    "vue-konva": "^2.0.0"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "2.6.2",
+    "jest": "^24.0.0",
+    "nodemon": "^1.18.9",
+    "prettier": "^1.16.4",
+    "vue-jest": "^3.0.2"
+  }
+}
