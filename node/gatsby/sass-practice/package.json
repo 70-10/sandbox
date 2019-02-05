@@ -1,0 +1,30 @@
+{
+  "name": "gatsby-starter-hello-world",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A simplified bare-bones starter for Gatsby",
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "serve": "gatsby serve",
+    "start": "npm run develop",
+    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+  },
+  "dependencies": {
+    "bulma": "^0.7.2",
+    "gatsby": "^2.0.114",
+    "gatsby-plugin-sass": "^2.0.10",
+    "node-sass": "^4.11.0",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1"
+  },
+  "devDependencies": {}
+}
