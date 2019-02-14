@@ -1,0 +1,19 @@
+{
+  "name": "nuxt-ts-sample",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt-ts"
+  },
+  "dependencies": {
+    "nuxt-ts": "^2.4.3",
+    "vue-property-decorator": "^7.3.0"
+  },
+  "devDependencies": {
+    "tslint-config-standard": "^8.0.1"
+  }
+}
