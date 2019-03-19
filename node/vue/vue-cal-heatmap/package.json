@@ -1,0 +1,25 @@
+{
+  "name": "vue-cal-heatmap",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html"
+  },
+  "dependencies": {
+    "cal-heatmap": "^3.6.2",
+    "dayjs": "^1.8.10",
+    "vue": "^2.6.9",
+    "vue-calendar-heatmap": "^0.8.4",
+    "vue-hot-reload-api": "^2.3.3"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.6.0",
+    "parcel-bundler": "^1.12.2",
+    "sass": "^1.17.3",
+    "vue-template-compiler": "^2.6.9"
+  }
+}
