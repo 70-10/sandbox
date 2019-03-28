@@ -1,0 +1,20 @@
+{
+  "name": "atcorder",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "5.12"
+  },
+  "scripts": {
+    "test": "jest --silent=false --verbose false --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "eslint-plugin-node": "^8.0.1",
+    "jest": "^24.5.0"
+  }
+}
