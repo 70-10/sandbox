@@ -1,0 +1,22 @@
+{
+  "name": "nuxt-typescript",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "nuxt": "^2.6.1",
+    "ts-node": "^8.0.3",
+    "vue-property-decorator": "^8.1.0",
+    "water.css": "github:kognise/water.css"
+  },
+  "devDependencies": {
+    "@nuxt/typescript": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^1.6.0"
+  }
+}
