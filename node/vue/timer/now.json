@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "name": "timekeeper",
+  "alias": "timekeeper",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ]
+}
