@@ -1,0 +1,8 @@
+version: "3"
+services:
+  komiser:
+    image: mlabouardy/komiser
+    ports:
+      - 3000:3000
+    volumes:
+      - ~/.aws:/root/.aws
