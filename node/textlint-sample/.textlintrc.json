@@ -1,0 +1,13 @@
+{
+  "filters": {},
+  "rules": {
+    "ja-hiragana-fukushi": true,
+    "ja-hiragana-hojodoushi": true,
+    "ja-hiragana-keishikimeishi": true,
+    "ja-no-abusage": true,
+    "ja-no-redundant-expression": true,
+    "ja-unnatural-alphabet": true,
+    "no-double-negative-ja": true,
+    "no-dropping-the-ra": true
+  }
+}
