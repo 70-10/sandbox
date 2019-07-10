@@ -5,17 +5,8 @@ const { OIDCStrategy } = require("passport-azure-ad");
 const config = require("config");
 const logger = require("morgan");
 
-const oauth2 = require("simple-oauth2").create({
-  client: {
-    id: config.app_id,
-    secret: config.app_password
-  },
-  auth: {
-    tokenHost: "https://login.microsoftonline.com/common",
-    authorizePath: "/oauth2/v2.0/authorize",
-    tokenPath: "/oauth2/v2.0/token"
-  }
-});
+const { getAccessTokenAsync } = require("./src/oauth");
+const { getUserDetails } = require("./src/graph");
 
 const app = express();
 
@@ -51,8 +42,7 @@ passport.use(
       if (!profile.oid) {
         return done(new Error("No OID found in user profile."), null);
       }
-      const oauthToken = oauth2.accessToken.create(params);
-      done(null, { profile, oauthToken });
+      done(null, { profile, oauthToken: params });
     }
   )
 );
@@ -62,8 +52,14 @@ passport.deserializeUser((obj, done) => done(null, obj));
 
 app.use("/auth", require("./src/routes/auth"));
 
-app.get("/", isAuthenticated, (req, res) => {
-  return res.json({ status: "ok", user: req.user });
+app.get("/", isAuthenticated, async (req, res) => {
+  const token = await getAccessTokenAsync(req);
+  if (!token) {
+    return res.status(401).end();
+  }
+
+  const user = await getUserDetails(token);
+  return res.json({ user });
 });
 
 function isAuthenticated(req, res, next) {
