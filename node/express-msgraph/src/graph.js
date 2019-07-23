@@ -18,6 +18,22 @@ module.exports = {
       .get();
 
     return events;
+  },
+
+  async sendEmail(accessToken, { subject, content, to_recipients }) {
+    const body = {
+      message: {
+        subject,
+        body: {
+          contentType: "Text",
+          content
+        },
+        toRecipients: to_recipients.map(r => ({ emailAddress: { address: r } }))
+      }
+    };
+
+    const client = createClient(accessToken);
+    await client.api("/me/sendMail").post(body);
   }
 };
 
