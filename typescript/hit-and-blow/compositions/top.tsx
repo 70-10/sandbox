@@ -30,7 +30,7 @@ const Top: NextComponentType = () => {
                   New Game
                 </button>
               </div>
-              <CallNumber numbers={numbers} setNumbers={setNumbers} />
+              <CallNumber numbers={numbers} setNumbers={setNumbers} end={end} />
 
               <div className="buttons has-addons is-centered">
                 <button
