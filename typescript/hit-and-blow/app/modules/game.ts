@@ -18,7 +18,7 @@ const initialState: State = {
 };
 
 const gameModule = createSlice({
-  slice: "game",
+  name: "game",
   initialState,
   reducers: {
     newGame: state => {
