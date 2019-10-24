@@ -8,7 +8,7 @@ import CallNumber from "../components/call-number";
 import LogTable from "../components/log-table";
 
 const Top: NextComponentType = () => {
-  const { turn, logs, end } = useGameItem();
+  const { turn, logs, end, digits, available_numbers } = useGameItem();
   const dispatch = useDispatch();
 
   const [numbers, setNumbers] = useState([]);
@@ -23,14 +23,39 @@ const Top: NextComponentType = () => {
                 <button
                   className="button"
                   onClick={() => {
-                    dispatch(gameModule.actions.newGame());
+                    dispatch(gameModule.actions.newGame(3));
                     setNumbers([]);
                   }}
                 >
-                  New Game
+                  New Game(3 digits)
+                </button>
+                <button
+                  className="button"
+                  onClick={() => {
+                    dispatch(gameModule.actions.newGame(4));
+                    setNumbers([]);
+                  }}
+                >
+                  New Game(4 digits)
+                </button>
+                <button
+                  className="button"
+                  onClick={() => {
+                    dispatch(gameModule.actions.newGame(5));
+                    setNumbers([]);
+                  }}
+                >
+                  New Game(5 digits)
                 </button>
               </div>
-              <CallNumber numbers={numbers} setNumbers={setNumbers} end={end} />
+
+              <CallNumber
+                numbers={numbers}
+                setNumbers={setNumbers}
+                end={end}
+                length={digits}
+                available_numbers={available_numbers}
+              />
 
               <div className="buttons has-addons is-centered">
                 <button

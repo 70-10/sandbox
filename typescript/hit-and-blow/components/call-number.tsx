@@ -5,9 +5,17 @@ type Props = {
   numbers: number[];
   setNumbers: Dispatch<SetStateAction<any[]>>;
   end: boolean;
+  length: number;
+  available_numbers: number[];
 };
 
-const CallNumber: NextComponentType<NextPageContext, {}, Props> = ({ numbers, setNumbers, end }) => {
+const CallNumber: NextComponentType<NextPageContext, {}, Props> = ({
+  numbers,
+  setNumbers,
+  end,
+  length,
+  available_numbers
+}) => {
   const selectNumbers = (num: number) => {
     if (numbers.length === length) {
       return;
@@ -21,7 +29,7 @@ const CallNumber: NextComponentType<NextPageContext, {}, Props> = ({ numbers, se
     nums.push(num);
     setNumbers(nums);
   };
-  const length = 3;
+
   return (
     <>
       <div className="buttons has-addons is-centered">
@@ -34,7 +42,7 @@ const CallNumber: NextComponentType<NextPageContext, {}, Props> = ({ numbers, se
         })}
       </div>
       <div className="buttons has-addons is-centered">
-        {[...Array(10)].map((_, i) => (
+        {available_numbers.map(i => (
           <button key={i} className="button is-medium" onClick={() => selectNumbers(i)} disabled={end}>
             {i}
           </button>

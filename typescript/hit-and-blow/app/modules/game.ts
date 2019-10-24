@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from "redux-starter-kit";
 import { Result, Log } from "./type";
 
-const LENGTH = 3;
+const initialAvailableNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 type State = {
+  digits: number;
+  available_numbers: number[];
   turn: number;
   logs: Log[];
   result_numbers: number[];
@@ -11,9 +13,11 @@ type State = {
 };
 
 const initialState: State = {
+  digits: 3,
+  available_numbers: initialAvailableNumbers,
   turn: 1,
   logs: [],
-  result_numbers: generateRandomNumbers(LENGTH),
+  result_numbers: generateRandomNumbers(3, initialAvailableNumbers),
   end: false
 };
 
@@ -21,19 +25,20 @@ const gameModule = createSlice({
   name: "game",
   initialState,
   reducers: {
-    newGame: state => {
+    newGame: (state, action: PayloadAction<number>) => {
+      state.digits = action.payload;
       state.turn = 1;
       state.logs = [];
-      state.result_numbers = generateRandomNumbers(LENGTH);
+      state.result_numbers = generateRandomNumbers(action.payload, state.available_numbers);
       state.end = false;
     },
     call: (state, action: PayloadAction<number[]>) => {
-      if (action.payload.length !== LENGTH) {
+      if (action.payload.length !== state.digits) {
         return;
       }
       const result = check(action.payload, state.result_numbers);
       state.logs.push({ turn: state.turn, call_number: action.payload, result });
-      if (result.hit === LENGTH) {
+      if (result.hit === state.digits) {
         state.end = true;
         return;
       }
@@ -61,10 +66,10 @@ function check(expect: number[], actual: number[]): Result {
   return { hit, blow };
 }
 
-function generateRandomNumbers(length: number) {
+function generateRandomNumbers(length: number, available_numbers: number[]) {
   const arr = [];
   while (arr.length < length) {
-    const r = Math.floor(Math.random() * 10);
+    const r = available_numbers[Math.floor(Math.random() * available_numbers.length)];
     if (!arr.includes(r)) {
       arr.push(r);
     }
