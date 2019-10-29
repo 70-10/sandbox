@@ -1,0 +1,37 @@
+service:
+  name: player-server
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: ap-northeast-1
+
+functions:
+  setup:
+    handler: handler.setup
+    events:
+      - http:
+          method: post
+          path: setup
+  call:
+    handler: handler.call
+    events:
+      - http:
+          method: post
+          path: call
+  attack_item:
+    handler: handler.attackItem
+    events:
+      - http:
+          method: post
+          path: item/attack
+  defense_item:
+    handler: handler.defenseItem
+    events:
+      - http:
+          method: post
+          path: item/defense
