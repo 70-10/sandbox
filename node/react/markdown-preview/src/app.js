@@ -3,6 +3,8 @@ import remark from "remark";
 import remark2react from "remark-react";
 import "./app.scss";
 
+import Markdown from "react-markdown";
+
 export default () => {
   const [text, setText] = useState("# hello");
 
@@ -24,6 +26,11 @@ export default () => {
                 .use(remark2react)
                 .processSync(text).contents
             }
+          </div>
+        </div>
+        <div className="column">
+          <div className="content">
+            <Markdown source={text} />
           </div>
         </div>
       </div>
