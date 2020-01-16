@@ -1,4 +1,4 @@
-# jest mock date samples
+# Mock Date
 
 Mocking `Date` for Jest
 
