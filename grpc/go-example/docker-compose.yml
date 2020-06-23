@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  protoc:
+    image: grpc-go:alpine
+    build: .
+    working_dir: /work
+    volumes:
+      - ./:/work
+    entrypoint: protoc --proto_path ./proto --go_out=plugins=grpc:./proto
