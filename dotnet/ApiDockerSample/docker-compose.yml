@@ -1,0 +1,7 @@
+version: "3"
+services:
+  api:
+    image: api-docker-sample
+    build: .
+    ports:
+      - 8000:80
