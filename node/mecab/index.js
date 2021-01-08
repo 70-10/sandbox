@@ -1,12 +1,9 @@
-const path = require("path");
 const Mecab = require("mecab-async");
 
-const dirPath = path.join(__dirname, "dict");
-
-function generateMecab() {
+function createMeCab() {
   const mecab = new Mecab();
-  mecab.command = `mecab -d ${dirPath}`;
-  mecab.pParse = text =>
+  mecab.command = "mecab";
+  mecab.pParse = (text) =>
     new Promise((resolve, reject) => {
       mecab.parse(text, (err, result) => {
         if (err) {
@@ -19,11 +16,11 @@ function generateMecab() {
 }
 
 async function main() {
-  const mecab = generateMecab();
-  const result = await mecab.pParse(
+  const mecab = createMeCab();
+  const nodes = await mecab.pParse(
     "きゃりーぱみゅぱみゅがGINZA SIXでインスタ映えするライブを行う"
   );
-  console.log(result);
+  console.log(nodes);
 }
 
 main().catch(console.error);

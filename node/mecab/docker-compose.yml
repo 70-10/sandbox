@@ -1,10 +1,6 @@
-version: "3.3"
+version: "3"
 services:
-  neologd:
-    build: ./tools/mecab-ipadic-neologd
-    volumes:
-      - ./dict:/usr/lib/mecab/dic/mecab-ipadic-neologd
   mecab:
     build: .
     volumes:
-      - .:/mecab
+      - .:/work

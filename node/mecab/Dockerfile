@@ -1,17 +1,23 @@
-FROM node:8-alpine
+FROM node:14-alpine
 
-RUN apk add --update --no-cache build-base
+RUN apk add --update --no-cache build-base git bash curl openssl sudo openblas-dev
 
-ADD https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE /tmp/mecab-0.996.tar.gz
+RUN git clone https://github.com/taku910/mecab.git /mecab
+WORKDIR /mecab/mecab
+RUN ./configure --enable-utf8-only && \
+    make && \
+    make install
 
-RUN tar -xzf /tmp/mecab-0.996.tar.gz -C /tmp
-WORKDIR /tmp/mecab-0.996
-RUN ./configure --with-charset=utf8 --enable-utf8-only \
-    && make \
-    && make install
+RUN git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git /mecab-ipadic-neologd && \
+    /mecab-ipadic-neologd/bin/install-mecab-ipadic-neologd -n -a -y -p /usr/local/lib/mecab/dic/mecab-ipadic-neologd
 
-COPY . /mecab
-WORKDIR /mecab
-RUN npm install
+RUN echo "dicdir = /usr/local/lib/mecab/dic/mecab-ipadic-neologd" > /usr/local/etc/mecabrc
+
+RUN rm -rf /mecab && \
+    rm -rf /mecab-ipadic-neologd
+
+COPY . /work
+WORKDIR /work
+RUN npm ci
 
 CMD ["npm", "start"]
