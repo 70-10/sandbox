@@ -1,0 +1,9 @@
+version: "3"
+services:
+  python:
+    build: .
+    image: python-nlp
+    working_dir: /work
+    tty: true
+    volumes:
+      - ./:/work
