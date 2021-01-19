@@ -18,6 +18,6 @@ RUN rm -rf /mecab && \
 
 COPY . /work
 WORKDIR /work
-RUN npm ci
+RUN yarn
 
 CMD ["npm", "start"]
