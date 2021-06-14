@@ -1,0 +1,10 @@
+version: "3"
+services:
+  dev:
+    image: alpine
+    links:
+      - server:plantuml-server.local
+  server:
+    image: plantuml/plantuml-server
+    ports:
+      - 8080:8080
