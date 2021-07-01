@@ -1,0 +1,19 @@
+{
+  "name": "using-split-chunks-plugin",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "build:big": "webpack --config webpack.not-optimized.config.js"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "terser-webpack-plugin": "^5.1.4",
+    "webpack": "^5.41.1",
+    "webpack-cli": "^4.7.2"
+  }
+}
