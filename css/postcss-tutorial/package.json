@@ -13,6 +13,6 @@
   "devDependencies": {
     "autoprefixer": "^9.4.5",
     "postcss-cli": "^6.1.1",
-    "serve": "^10.1.1"
+    "serve": "^10.1.2"
   }
 }
