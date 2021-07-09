@@ -1,0 +1,16 @@
+{
+  "name": "using-esbuild-loader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "serve": "webpack serve",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "esbuild-loader": "^2.13.1",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
