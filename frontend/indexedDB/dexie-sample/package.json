@@ -1,0 +1,17 @@
+{
+  "name": "dexie-sample",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "web-test-runner \"**/*.test.js\" --node-resolve"
+  },
+  "devDependencies": {
+    "@esm-bundle/chai": "^4.3.4-fix.0",
+    "@web/test-runner": "^0.13.15",
+    "power-assert": "^1.6.1"
+  },
+  "dependencies": {
+    "dexie": "^3.0.3"
+  }
+}
