@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "google-home-notifier": "^1.2.0",
     "ngrok": "^2.2.25",
     "pug": "^2.0.0-rc.4"
