@@ -10,7 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "config": "^1.28.1",
+    "config": "^3.3.8",
     "express": "^4.16.2",
     "mecab-async": "^0.1.2",
     "socket.io": "^2.0.4",
