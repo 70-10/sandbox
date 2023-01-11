@@ -13,6 +13,6 @@
     "moment": "^2.20.1"
   },
   "devDependencies": {
-    "ava": "^0.24.0"
+    "ava": "^5.1.0"
   }
 }
