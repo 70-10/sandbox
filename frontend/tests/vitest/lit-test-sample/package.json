@@ -2,20 +2,19 @@
   "name": "lit-test-sample",
   "version": "0.1.0",
   "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
   "main": "index.js",
   "scripts": {
     "test": "vitest",
     "test:coverage": "vitest run --coverage"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "c8": "^7.11.3",
-    "happy-dom": "^6.0.3",
-    "vitest": "^0.18.0"
-  },
   "dependencies": {
-    "lit": "^2.2.7"
+    "lit": "^2.6.1"
+  },
+  "devDependencies": {
+    "jsdom": "^21.0.0",
+    "vitest": "^0.27.2"
   }
 }
