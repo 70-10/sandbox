@@ -1,0 +1,6 @@
+services:
+  app:
+    image: next-ssr-sample
+    build: .
+    ports:
+      - 3000:3000
