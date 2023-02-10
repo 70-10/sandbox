@@ -17,7 +17,7 @@
     "bulma": "^0.7.1",
     "bulma-carousel": "^3.0.0",
     "bulma-timeline": "^3.0.0",
-    "next": "^9.3.2",
+    "next": "^9.5.5",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
