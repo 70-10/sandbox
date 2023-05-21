@@ -1,3 +1,4 @@
+import { test, expect } from "vitest";
 import multipleIncludes from "./multiple-includes";
 
 test("single word - include", () => {

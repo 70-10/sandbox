@@ -1,28 +1,17 @@
-const multipleIncludes = (
+function multipleIncludes(
   text: string,
-  pattern: string | string[],
+  patterns: string | string[],
   conditions: "and" | "or" = "or"
-) => {
-  if (typeof pattern === "string") {
-    return text.includes(pattern);
+): boolean {
+  if (typeof patterns === "string") {
+    return text.includes(patterns);
   }
 
   if (conditions === "and") {
-    for (const word of pattern) {
-      if (!text.includes(word)) {
-        return false;
-      }
-    }
-
-    return true;
+    return patterns.every((pattern) => text.includes(pattern));
   }
 
-  for (const word of pattern) {
-    if (text.includes(word)) {
-      return true;
-    }
-  }
-  return false;
-};
+  return patterns.some((pattern) => text.includes(pattern));
+}
 
 export default multipleIncludes;
