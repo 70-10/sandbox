@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Popover API</title>
+  <style>
+    body {
+      background-color: cadetblue;
+    }
+
+    .parent {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
+    }
+
+    .header {
+      padding-left: 20px;
+      background-color: brown;
+      grid-area: 1 / 1 / 2 / 6;
+    }
+
+    .content {
+      padding-left: 20px;
+
+      background-color: beige;
+      grid-area: 2 / 1 / 6 / 5;
+    }
+
+    .side {
+      padding-left: 20px;
+
+      background-color: darkgoldenrod;
+      grid-area: 2 / 5 / 6 / 6;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="parent">
+    <div class="header">
+      <h2>Header</h2>
+    </div>
+    <div class="content">
+      <h2>Main</h2>
+      <button popovertarget="my-popover"> Open Popover </button>
+
+      <div id="my-popover" popover>
+        <p>I am a popover with more information.</p>
+      </div>
+    </div>
+    <div class="side">
+      <h2>Side</h2>
+    </div>
+  </main>
+</body>
+
+</html>
