@@ -1,0 +1,15 @@
+{
+    "name": "Deno",
+    "dockerFile": "Dockerfile",
+    "remoteUser": "vscode",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "deno.enable": true
+            },
+            "extensions": [
+                "denoland.vscode-deno"
+            ]
+        }
+    }
+}
