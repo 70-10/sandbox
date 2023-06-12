@@ -1,7 +1,7 @@
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function main() {
-  await forEachAsync([1, 2, 3, 4, 5], async i => {
+  await forEachAsync([1, 2, 3, 4, 5], async (i) => {
     await sleep(i * 1000);
     console.log(i);
   });
