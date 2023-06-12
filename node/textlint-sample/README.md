@@ -1,1 +1,0 @@
-# TextLint Sample
