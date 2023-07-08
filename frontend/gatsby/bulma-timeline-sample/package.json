@@ -14,7 +14,7 @@
     "bulma-timeline": "^3.0.4",
     "gatsby": "^2.15.28",
     "gatsby-plugin-sass": "^2.1.17",
-    "node-sass": "^4.12.0",
+    "node-sass": "^9.0.0",
     "react": "^16.10.1",
     "react-dom": "^16.10.1"
   }
