@@ -1,0 +1,47 @@
+{
+  "name": "Hono DI Sample",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+  "features": {
+    "ghcr.io/shyim/devcontainers-features/bun:0": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "quickfix.biome": "explicit",
+          "source.organizeImports.biome": "explicit"
+        },
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[javascript]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[javascriptreact]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[typescriptreact]": {
+          "editor.defaultFormatter": "biomejs.biome"
+        },
+        "[prisma]": {
+          "editor.defaultFormatter": "Prisma.prisma"
+        },
+        "cSpell.enabled": true,
+        "cSpell.words": ["biomejs", "hono"],
+        "cSpell.allowCompoundWords": true,
+        "cSpell.ignorePaths": ["**/node_modules/**", "**/.devcontainer/**"]
+      },
+      "extensions": [
+        "oven.bun-vscode",
+        "Prisma.prisma",
+        "esbenp.prettier-vscode",
+        "biomejs.biome",
+        "streetsidesoftware.code-spell-checker",
+        "EditorConfig.EditorConfig",
+        "ZixuanChen.vitest-explorer"
+      ]
+    }
+  }
+}
