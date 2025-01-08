@@ -1,0 +1,27 @@
+{
+  "name": "@std",
+  "runArgs": [
+    "--name=deno-std",
+    "--rm"
+  ],
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "features": {
+    "ghcr.io/devcontainers-community/features/deno:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "deno.enable": true,
+        "workbench.colorCustomizations": {
+          "editorWhitespace.foreground": "#7c7a7a"
+        },
+        "editor.renderWhitespace": "boundary",
+        "editor.formatOnSave": true,
+        "editor.stickyScroll.enabled": true
+      },
+      "extensions": [
+        "denoland.vscode-deno"
+      ]
+    }
+  }
+}
