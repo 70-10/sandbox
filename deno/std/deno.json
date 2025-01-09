@@ -1,8 +1,10 @@
 {
   "tasks": {
-    "fmt": "deno run --watch fmt.ts"
+    "fmt": "deno run --watch fmt.ts",
+    "fs": "deno run --allow-read --allow-write --watch fs.ts"
   },
   "imports": {
-    "@std/fmt": "jsr:@std/fmt@^1.0.3"
+    "@std/fmt": "jsr:@std/fmt@^1.0.3",
+    "@std/fs": "jsr:@std/fs@^1.0.8"
   }
 }
