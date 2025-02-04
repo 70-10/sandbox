@@ -1,0 +1,33 @@
+{
+  "name": "Mancala",
+  "runArgs": ["--name=mancala", "--rm"],
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "features": {
+    "ghcr.io/shyim/devcontainers-features/bun:0": {}
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.wakatime.cfg,target=/home/node/.wakatime.cfg,type=bind,consistency=delegated"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "workbench.colorCustomizations": {
+          "editorWhitespace.foreground": "#7c7a7a"
+        },
+        "editor.renderWhitespace": "boundary",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.stickyScroll.enabled": true
+      },
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "usernamehw.errorlens",
+        "yoavbls.pretty-ts-errors"
+      ]
+    }
+  },
+  "remoteEnv": {
+    "TZ": "Asia/Tokyo"
+  }
+}

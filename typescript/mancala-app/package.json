@@ -1,0 +1,16 @@
+{
+  "name": "mancala-app",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "22.13.1",
+    "@types/readline-sync": "1.4.8"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "readline-sync": "1.4.10"
+  }
+}
