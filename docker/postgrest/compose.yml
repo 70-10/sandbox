@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_USER: api_user
+      POSTGRES_PASSWORD: secretpw
+      POSTGRES_DB: api_db
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+  postgrest:
+    image: postgrest/postgrest
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PGRST_DB_URI: postgres://api_user:secretpw@db:5432/api_db
+      PGRST_DB_ANON_ROLE: web_anon
+      PGRST_DB_SCHEMA: public
+      PGRST_JWT_SECRET: replace_with_a_secure_secret
+      PGRST_DB_POOL: 10
+    ports:
+      - 3000:3000
