@@ -1,0 +1,29 @@
+{
+	"name": "IP Check",
+	"runArgs": [
+		"--name=ip-check",
+		"--rm"
+	],
+	"image": "mcr.microsoft.com/devcontainers/dotnet:1-8.0-bookworm",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"workbench.colorCustomizations": {
+					"editorWhitespace.foreground": "#7c7a7a"
+				},
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": "always"
+				},
+				"editor.renderWhitespace": "boundary",
+				"editor.formatOnSave": true,
+				"editor.stickyScroll.enabled": true
+			},
+			"extensions": [
+				"eservice-online.vs-sharper",
+				"ms-dotnettools.csharp",
+				"ms-dotnettools.csdevkit",
+				"jeremycaron.csharp-organize-usings"
+			]
+		}
+	}
+}
